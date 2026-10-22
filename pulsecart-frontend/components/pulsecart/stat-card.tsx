@@ -65,7 +65,7 @@ export function StatCard({
 
   const formattedDisplay =
     displayNumber !== null
-      ? `${prefix}${displayNumber.toLocaleString()}${suffix}`
+      ? `${prefix}${displayNumber.toLocaleString("en-US")}${suffix}`
       : value
 
   return (

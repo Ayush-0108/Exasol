@@ -120,8 +120,8 @@ export function PipelineBars({
 
               {/* Rows Count + Latency Badge */}
               <div className="flex items-center justify-between sm:justify-end gap-3 sm:w-56 shrink-0 text-right">
-                <span className="text-zinc-400">
-                  {source.rows_ingested_24h.toLocaleString()} rows
+                <span className="text-zinc-400" suppressHydrationWarning>
+                  {source.rows_ingested_24h.toLocaleString("en-US")} rows
                 </span>
                 <span
                   className={`text-[10px] px-2 py-0.5 rounded border ${latencyColor}`}
@@ -141,8 +141,8 @@ export function PipelineBars({
           <Activity className="size-4 text-emerald-400" aria-hidden="true" />
           <span>
             Current throughput:{" "}
-            <strong className="text-zinc-100 font-semibold">
-              {data?.throughput_rows_per_min?.toLocaleString() ?? "2,480"}
+            <strong className="text-zinc-100 font-semibold" suppressHydrationWarning>
+              {data?.throughput_rows_per_min?.toLocaleString("en-US") ?? "2,480"}
             </strong>{" "}
             rows/min
           </span>
