@@ -1,181 +1,187 @@
-# PulseCart: Real-Time Customer Intelligence & Margin Protection Platform
+# PulseCart
 
-> **Exasol Hackathon — Track 02: Customers, Channels & Demand**  
-> High-performance analytical compute engine powered by Exasol Personal Edition, FastAPI, and Groq LLM inference.
+**Real-time customer intelligence and margin protection for quick commerce**
 
----
+PulseCart is an analytical platform for quick-commerce operations. It combines Exasol SQL analytics, a FastAPI service layer, and Groq-hosted language models to identify promotion abuse, forecast inventory risks, prioritize customer churn, and analyze return-related margin losses across dense urban dark-store networks.
 
-## 1. Project Overview
-
-PulseCart is an operational customer intelligence platform purpose-built for quick commerce (10–30 min grocery delivery). In quick commerce, thin operating margins (2–5%) are heavily eroded by promotion abuse, repeat delivery failures, stockouts, and serial return abusers. 
-
-PulseCart leverages **Exasol** as both the high-speed analytical database and real-time compute engine across 5 operational modules:
-
-1. **Module 1: Master Identity & Promo Abuse Prevention** — Multi-address identity linkage and fuzzy address matching blocking fraudulent discount redemptions.
-2. **Module 2: Predictive Inventory Radar** — Dark store stockout runout forecasting evaluating 6h/24h demand predictions to prevent stock depletion.
-3. **Module 3: The Churn Miner & Retention Engine** — Sub-second ticket sentiment & urgency classification via Groq LLMs with automated customer retention offers.
-4. **Module 4: Margin Protection & Returns Attribution** — Real-time identification of returns abusers and margin-negative "toxic SKUs".
-5. **Module 5: Executive Command Center** — Live ROI tracking, ingestion pipeline monitoring, and consolidated cross-module operational alerts.
+Developed for the Exasol Hackathon, Track 02: Customers, Channels & Demand.
 
 ---
 
-## 2. Architecture Diagram
+## Overview
 
-```
+Quick-commerce businesses operate with razor-thin margins (2–5%) and face operational risks across customer identity, inventory, customer support, and serial returns. PulseCart brings these signals into a single unified platform backed by an Exasol analytical columnar database.
+
+The system is organized around five operational modules situated in Bengaluru (India's quick-commerce capital), managing dark stores across Koramangala, Indiranagar, HSR Layout, and Whitefield:
+
+- **Identity resolution and promotion abuse:** Links customer golden identities across addresses and evaluates address similarity to flag suspicious discount redemptions and burner accounts.
+- **Inventory risk detection:** Combines store inventory with 6-hour machine learning demand forecasts to identify dark-store SKUs at critical risk of stockout.
+- **Customer churn and retention:** Uses LLM-based ticket classification (Groq LPU) to assess urgency and sentiment, prioritize churn risk, and dispatch automated retention credits.
+- **Returns and margin analysis:** Identifies customers with serial return patterns and detects margin-negative "toxic SKUs" attributable to quality or cold-chain failures.
+- **Operational monitoring & Command Center:** Aggregates real-time ROI indicators (in ₹ / INR), ingestion pipeline telemetry across 5 streaming sources, service health, and operational alerts.
+
+---
+
+## Architecture
+
+```text
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        QUICK COMMERCE SOURCE SYSTEMS                   │
-│   Order App       Web Guests      Loyalty Portal     Returns Portal    │
-└────────┬───────────────┬─────────────────┬───────────────────┬─────────┘
-         │               │                 │                   │
-         └───────────────┼─────────────────┼───────────────────┘
-                         ▼                 ▼
-          ┌──────────────────────────────────────────────┐
-          │      EXASOL HIGH-PERFORMANCE ANALYTICS       │
-          │             (In-Memory Columnar)             │
-          │                                              │
-          │  • customer_golden_id     • orders           │
-          │  • address_history        • return_events    │
-          │  • store_inventory        • support_tickets  │
-          │  • demand_forecast        • fraud_events     │
-          │                                              │
-          │  Analytical Views (exasol-views.sql):        │
-          │  VW_CUSTOMER_GOLDEN    VW_STOCKOUT_WARNINGS  │
-          │  VW_CHURN_RISK         VW_RETURNS_ABUSERS    │
-          │              MV_CUSTOMER_360                 │
-          └──────────────────────┬───────────────────────┘
-                                 │
-                     pyexasol WebSocket (:8563)
-                                 │
-                                 ▼
-          ┌──────────────────────────────────────────────┐
-          │             FASTAPI BACKEND SERVER           │
-          │                 (Port: 8000)                 │
-          │                                              │
-          │  • /api/v1/checkout     • /api/v1/inventory  │
-          │  • /api/v1/tickets      • /api/v1/returns    │
-          │  • /api/v1/overview/roi • /api/v1/alerts     │
-          └───────────────┬──────────────────────────────┘
-                          │                  ▲
-               Structured │                  │ Groq Inference
-               Prompts    ▼                  │ (LPU Engine)
-                    ┌───────────────────────────┐
-                    │       GROQ CLOUD API      │
-                    │  Primary:  gpt-oss-20b    │
-                    │  Fallback: qwen3.8-27b    │
-                    └───────────────────────────┘
+│                      QUICK-COMMERCE SOURCE SYSTEMS                     │
+│    Order App · Customer identities · Inventory · Support · Returns     │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                       EXASOL ANALYTICAL DATABASE                       │
+│    Operational records · Columnar in-memory views · Customer 360       │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ PyExasol over WebSocket (:8563)
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                         FASTAPI SERVICE LAYER                          │
+│            REST endpoints · Workflows · Telemetry & Data access        │
+└───────────────────┬────────────────────────────────┬───────────────────┘
+                    │                                │
+                    │ Ticket analysis                │ REST / JSON
+                    ▼                                ▼
+┌──────────────────────────────────────┐  ┌──────────────────────────────┐
+│          GROQ INFERENCE API          │  │      PULSECART FRONTEND      │
+│  Primary · Fallback · Heuristics     │  │  Next.js Operator Dashboard  │
+└──────────────────────────────────────┘  └──────────────────────────────┘
+```
+
+Exasol provides the in-memory columnar compute layer. FastAPI exposes operational workflows through typed HTTP endpoints, while Groq handles high-throughput LLM inference for support-ticket analysis. The service connects via PyExasol over native WebSockets.
+
+---
+
+## Engineering Techniques
+
+- **Analytical views and customer data synthesis:** SQL views (`VW_CUSTOMER_GOLDEN`, `VW_STOCKOUT_WARNINGS`, `VW_CHURN_RISK`, `VW_RETURNS_ABUSERS`, `MV_CUSTOMER_360`) consolidate identity, inventory, churn, and returns signals directly in Exasol.
+- **Fuzzy address matching:** Python's `difflib.SequenceMatcher` provides token-level similarity scoring for cross-customer address comparisons.
+- **REST API design:** FastAPI provides typed Pydantic request handling and automatically generated OpenAPI documentation at `/docs`.
+- **Resilient inference:** A primary LLM (`openai/gpt-oss-20b`), a secondary model (`qwen/qwen3.8-27b`), and a rule-based heuristic classifier provide successive fallback paths when inference is unavailable or rate-limited.
+- **Database-side computation:** An Exasol Python scalar UDF illustrates how similarity computations can be pushed into Exasol's MPP cluster in deployments with the required language container.
+- **Operational simulation:** A simulation script generates orders, support inquiries, promotion decisions, and streaming pipeline telemetry for live operator demonstrations.
+
+---
+
+## Technologies
+
+| Technology | Role |
+|---|---|
+| [Python 3.11](https://www.python.org/) | Backend implementation and business logic |
+| [FastAPI](https://fastapi.tiangolo.com/) | REST API service layer and request handling |
+| [Exasol Personal Edition](https://github.com/exasol/exasol-personal) | In-memory columnar analytical database and SQL compute |
+| [PyExasol](https://github.com/exasol/pyexasol) | Python-to-Exasol native WebSocket connectivity |
+| [Groq](https://console.groq.com/docs/overview) | High-speed hosted LLM inference (LPU) |
+| [`difflib`](https://docs.python.org/3/library/difflib.html) | Fuzzy address similarity and entity matching |
+| [Next.js](https://nextjs.org/) / [React](https://react.dev/) | Operator dashboard web application |
+| [Tailwind CSS](https://tailwindcss.com/) | Dark-mode design system with data-dense typography |
+| [Uvicorn](https://www.uvicorn.org/) | High-performance ASGI server for FastAPI |
+
+---
+
+## Project Structure
+
+```text
+PulseCart/
+├── pulsecart-frontend/     # Next.js B2B operator dashboard
+│   ├── app/                # App router (Landing, Login, Dashboard routes)
+│   ├── components/         # Reusable UI cards, tables, pipeline bars
+│   └── lib/                # API client, types, and INR currency formatting
+├── udf/
+│   └── fuzzy_match.sql     # Exasol Python UDF definition for in-database matching
+├── scripts/
+│   ├── simulate.py         # Live quick-commerce activity simulator
+│   └── run_acceptance.py   # Automated 13-point end-to-end acceptance suite
+├── database.py             # PyExasol connection management & credential resolution
+├── main.py                 # FastAPI application and 20+ operational REST endpoints
+├── llm_service.py          # Groq LLM ticket analysis with resilient 3-tier fallback
+├── init.sql                # Exasol DDL schema and Bengaluru seed data
+├── exasol-views.sql        # Analytical views and Customer 360 materialization
+├── requirements.txt        # Python dependency manifest
+├── .env.example            # Environment template
+└── LICENSE                 # MIT License
 ```
 
 ---
 
-## 3. Quick Start & Setup Instructions
+## API Surface
 
-### Prerequisites
+| Route group | Method | Purpose |
+|---|---|---|
+| `GET /health` | GET | Database connectivity check and Exasol status |
+| `POST /api/v1/checkout` | POST | Real-time promo abuse check via fuzzy address matching |
+| `GET /api/v1/identity/customer/{id}` | GET | Customer Golden Record, linked addresses, and orders |
+| `GET /api/v1/fraud/log` | GET | Log of blocked promotion abuse events |
+| `/api/v1/inventory/*` | GET/POST | Dark store health, 6h stockout warnings, and reorder dispatch |
+| `/api/v1/tickets/*` | GET/POST | Support queue, LLM sentiment/urgency, and retention offers |
+| `/api/v1/returns/*` | GET | Return abusers leaderboard, toxic SKUs, and margin impact |
+| `/api/v1/overview/*` | GET | Consolidated ROI (in ₹), pipeline health, and alerts feed |
+
+Interactive API documentation and schema definitions are accessible at `http://localhost:8000/docs`.
+
+---
+
+## Getting Started
+
+### 1. Prerequisites
 - Python 3.10+
-- Running Exasol instance (Local Personal Edition or Docker on `127.0.0.1:8563`)
-- Groq API Key
+- Node.js 18+ (for frontend)
+- Exasol Personal Edition or Docker container running on `127.0.0.1:8563`
+- Groq Cloud API key
 
-### Installation
+### 2. Backend Setup
+```bash
+# Clone and enter directory
+cp .env.example .env
+# Set GROQ_API_KEY in .env
 
-1. **Clone & Set Up Environment**:
-   ```bash
-   cp .env.example .env
-   # Edit .env and paste your GROQ_API_KEY
-   ```
+# Install Python packages
+pip install -r requirements.txt
 
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Seed the Exasol database
+python -c "
+import database
+with open('init.sql', 'r', encoding='utf-8') as f:
+    sql = f.read()
+cleaned = '\n'.join([l for l in sql.splitlines() if not l.strip().startswith('--')])
+for s in cleaned.split(';'):
+    if s.strip(): database.execute_statement(s)
+print('Exasol database initialized!')
+"
 
-3. **Initialize the Exasol Database**:
-   Run `init.sql` against your Exasol cluster. You can run it via Python:
-   ```bash
-   python -c "
-   import database
-   with open('init.sql', 'r', encoding='utf-8') as f:
-       sql = f.read()
-   cleaned = '\n'.join([l for l in sql.splitlines() if not l.strip().startswith('--')])
-   for s in cleaned.split(';'):
-       if s.strip(): database.execute_statement(s)
-   print('Database initialized successfully!')
-   "
-   ```
+# Start the FastAPI server
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
 
-4. **Launch the FastAPI Server**:
-   ```bash
-   uvicorn main:app --reload --port 8000
-   ```
-   Interactive Swagger documentation will be available at: `http://localhost:8000/docs`
+### 3. Frontend Setup
+```bash
+cd pulsecart-frontend
+npm install
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) for the landing page or [http://localhost:3000/dashboard](http://localhost:3000/dashboard) for the Operator Command Center.
 
----
-
-## 4. API Reference Table
-
-| Method | Path | Description |
-| :--- | :--- | :--- |
-| `GET` | `/health` | Connectivity check verifying Exasol database health |
-| `POST`| `/api/v1/checkout` | Fuzzy matches address against identity graph; blocks Promo Abuse ($> 0.85$) |
-| `GET` | `/api/v1/inventory/stores` | Aggregated dark store health (total SKUs, critical, warning counts) |
-| `GET` | `/api/v1/inventory/stockout-warnings` | Prioritized SKUs predicted to run out in the next 6 hours |
-| `POST`| `/api/v1/inventory/reorder` | Replenishes dark store inventory for a specific SKU |
-| `GET` | `/api/v1/inventory/store/{store_id}/heatmap` | Heatmap matrix of inventory health per SKU for a dark store |
-| `GET` | `/api/v1/tickets` | Support ticket queue joined with customer LTV & churn risk labels |
-| `GET` | `/api/v1/tickets/{ticket_id}` | Detailed support ticket with LLM classification & recommended actions |
-| `POST`| `/api/v1/tickets/{ticket_id}/analyze` | Triggers Groq LLM ticket enrichment and re-blends customer churn risk |
-| `POST`| `/api/v1/tickets/bulk-analyze` | Batch processes up to 50 unanalyzed tickets via LLM |
-| `POST`| `/api/v1/tickets/{ticket_id}/send-offer` | Dispatches retention offer (store credit, free delivery) |
-| `GET` | `/api/v1/tickets/stats` | Aggregated ticket metrics (total, pending, avg churn risk, offers sent) |
-| `GET` | `/api/v1/returns/abusers` | Leaderboard of customers whose return habits cost the most margin |
-| `GET` | `/api/v1/returns/toxic-skus` | Identifies SKUs with net-negative margins due to high return volumes |
-| `GET` | `/api/v1/returns/impact-summary` | High-level margin erosion and refund totals grouped by reason/category |
-| `GET` | `/api/v1/returns/by-customer/{golden_id}` | Detailed return history for an individual customer |
-| `GET` | `/api/v1/overview/roi` | Total revenue saved today/week across fraud blocks, churn, and restocks |
-| `GET` | `/api/v1/overview/pipeline-health` | 24-hour ingestion throughput and latency telemetry across 5 sources |
-| `GET` | `/api/v1/overview/alerts` | Consolidated feed of the 50 highest priority operational alerts |
-| `GET` | `/api/v1/overview/system-health` | Real-time system status, database link, and service uptime |
-
----
-
-## 5. Exasol SQL Reference
-
-Production analytical views are defined in [`exasol-views.sql`](file:///d:/Ayush_Files/Users/kumar/exasol/exasol-views.sql):
-
-- **`VW_CUSTOMER_GOLDEN`**: Real-time identity graph synthesis calculating multi-address linkages and identity confidence.
-- **`VW_STOCKOUT_WARNINGS`**: Evaluates `store_inventory` against machine learning `demand_forecast` predictions.
-- **`VW_CHURN_RISK`**: Aggregates ticket urgency, sentiment, and churn scores per customer golden identity.
-- **`VW_RETURNS_ABUSERS`**: Ranks customers into abuse bands (`RETURNS_ABUSER`, `MODERATE_RISK`, `LOW_RISK`).
-- **`MV_CUSTOMER_360`**: Complete customer synthesis joining identity, transactions, churn tickets, and return margins.
-
----
-
-## 6. Exasol Python UDF Setup
-
-The project includes an Exasol Python 3 scalar UDF in [`udf/fuzzy_match.sql`](file:///d:/Ayush_Files/Users/kumar/exasol/udf/fuzzy_match.sql).
-
-- **Production Scale**: In an enterprise Exasol deployment with the Python 3 language container installed in BucketFS, running this UDF pushes string similarity computations into Exasol's MPP cluster, enabling parallel matching of millions of address combinations.
-- **Local Hackathon Deployment**: Exasol Personal Edition / containerized setups typically omit the script language container package. To ensure 100% portability and eliminate setup friction, `main.py` performs fuzzy matching in Python (`fuzzy_match_addresses`) using `difflib.SequenceMatcher`, while reading and persisting all transactional records directly to Exasol.
-
----
-
-## 7. LLM Integration & Resilient Fallback Chain
-
-Ticket analysis in [`llm_service.py`](file:///d:/Ayush_Files/Users/kumar/exasol/llm_service.py) utilizes Groq for high-speed structured inference:
-1. **Tier 1 (Primary)**: `openai/gpt-oss-20b` (low latency, high precision classification).
-2. **Tier 2 (Fallback)**: `qwen/qwen3.8-27b` (automatic fallback if Tier 1 is congested).
-3. **Tier 3 (Heuristic)**: Rule-based keyword classifier that fires only if network access to Groq is unavailable.
-
----
-
-## 8. Live Activity Simulation
-
-To simulate dynamic store activity during a live operator demo:
+### 4. Run Live Simulator
 ```bash
 python scripts/simulate.py
 ```
-This script runs continuously in the background, inserting orders, generating support inquiries, triggering promo authorizations/blocks, and emitting pipeline metrics.
 
 ---
 
-## 9. License
+## Implementation Notes
 
-MIT License — see [LICENSE](file:///d:/Ayush_Files/Users/kumar/exasol/LICENSE) for details.
+### Address Matching and Deployment Portability
+The local deployment runs fuzzy address matching in Python with `difflib.SequenceMatcher` to prevent setup friction across containerized Exasol instances. The optional Exasol UDF in `udf/fuzzy_match.sql` demonstrates how the same algorithm runs distributed across Exasol cluster nodes when the Python 3 script language container is configured.
+
+### LLM Fallback Strategy
+Ticket classification uses `openai/gpt-oss-20b` as the primary low-latency model, `qwen/qwen3.8-27b` as the secondary model, and an offline rule-based heuristic classifier if Groq is unreachable.
+
+### Single-City Quick-Commerce Focus
+All 4 dark stores (`STORE-BLR-01` to `STORE-BLR-04`) and customer accounts reside in Bengaluru (Koramangala, Indiranagar, HSR Layout, Whitefield), reflecting realistic 10–15 minute dark store delivery geometry and localized INR (`₹`) financial telemetry.
+
+---
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE).
