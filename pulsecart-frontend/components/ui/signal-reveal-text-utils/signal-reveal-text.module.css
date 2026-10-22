@@ -1,0 +1,15 @@
+.root {
+  display: inline-block;
+  position: relative;
+  isolation: isolate;
+}
+
+.copy {
+  display: inline;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}

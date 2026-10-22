@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    
+    --card: #18181b;
+    --card-foreground: #f4f4f5;
+    
+    --popover: #18181b;
+    --popover-foreground: #f4f4f5;
+    
+    --primary: #10b981;
+    --primary-foreground: #022c22;
+    
+    --secondary: #27272a;
+    --secondary-foreground: #f4f4f5;
+    
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    
+    --accent: #27272a;
+    --accent-foreground: #f4f4f5;
+    
+    --destructive: #ef4444;
+    --destructive-foreground: #fef2f2;
+    
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #10b981;
+    
+    --radius: 0.5rem;
+
+    /* Custom Design Tokens */
+    --color-bg: #09090b;
+    --color-surface: #18181b;
+    --color-surface-elevated: #27272a;
+    --color-text: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-border: #27272a;
+    --color-border-subtle: #3f3f46;
+    --color-accent: #10b981;
+
+    /* Module Accents */
+    --color-module-identity: #8b5cf6;
+    --color-module-inventory: #f59e0b;
+    --color-module-tickets: #f43f5e;
+    --color-module-returns: #f97316;
+    --color-module-command: #10b981;
+  }
+
+  .dark {
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    --card: #18181b;
+    --card-foreground: #f4f4f5;
+    --popover: #18181b;
+    --popover-foreground: #f4f4f5;
+    --primary: #10b981;
+    --primary-foreground: #022c22;
+    --secondary: #27272a;
+    --secondary-foreground: #f4f4f5;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #f4f4f5;
+    --destructive: #ef4444;
+    --destructive-foreground: #fef2f2;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #10b981;
+  }
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code, pre, kbd, samp, .font-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Accessible focus styling */
+:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
