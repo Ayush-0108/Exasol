@@ -1020,7 +1020,7 @@ def get_consolidated_alerts() -> Dict[str, Any]:
             "id": f"CHURN-{r['golden_id']}",
             "type": "critical_churn_risk",
             "severity": "high",
-            "message": f"Customer {r['name']} ({r['golden_id']}) flagged critical churn risk ({float(r['churn_risk']):.2f}, LTV: €{float(r['ltv']):.2f})",
+            "message": f"Customer {r['name']} ({r['golden_id']}) flagged critical churn risk ({float(r['churn_risk']):.2f}, LTV: ₹{float(r['ltv']):.2f})",
             "timestamp": str(r["updated_at"]),
             "source_module": "Module 3: Churn Miner",
         })
@@ -1038,7 +1038,7 @@ def get_consolidated_alerts() -> Dict[str, Any]:
             "id": r["return_id"],
             "type": "high_margin_return",
             "severity": "medium",
-            "message": f"Return on {r['sku']} ({r['reason']}) cost €{float(r['margin_impact']):.2f} in margin erosion",
+            "message": f"Return on {r['sku']} ({r['reason']}) cost ₹{float(r['margin_impact']):.2f} in margin erosion",
             "timestamp": str(r["created_at"]),
             "source_module": "Module 4: Returns Attribution",
         })

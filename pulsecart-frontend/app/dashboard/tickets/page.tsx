@@ -67,8 +67,8 @@ export default function CustomerSuccessPage() {
       churn_risk_score: 0.88,
       category: "Delivery Delay & Quality",
       summary: "Customer reports repeated delivery delays and damaged cold-chain grocery items. Threatens churn to competitor.",
-      recommended_action: "Immediate refund for damaged milk and proactive €15 retention credit apology.",
-      suggested_offer: "€15 store credit",
+      recommended_action: "Immediate refund for damaged milk and proactive ₹15 retention credit apology.",
+      suggested_offer: "₹15 store credit",
       offer_sent: false,
       created_at: "2026-10-22T19:00:00.000Z",
       analyzed_at: "2026-10-22T19:05:00.000Z",
@@ -76,9 +76,9 @@ export default function CustomerSuccessPage() {
     {
       ticket_id: "TCK-1002",
       golden_id: "GID-1002",
-      customer_name: "John Matrix",
-      customer_email: "matrix@command.mil",
-      customer_ltv: 420.0,
+      customer_name: "Priya Verma",
+      customer_email: "priya.verma@example.in",
+      customer_ltv: 111600.0,
       customer_churn_label: "LOW_RISK",
       subject: "Missing item from order ORD-9014",
       body: "Avocados were missing from the bag delivered at 14:15. Can you please credit my account?",
@@ -87,8 +87,8 @@ export default function CustomerSuccessPage() {
       churn_risk_score: 0.45,
       category: "Missing Items",
       summary: "Single missing produce item from recent dark store delivery.",
-      recommended_action: "Credit €3.50 for missing avocados to app wallet.",
-      suggested_offer: "€5 wallet credit",
+      recommended_action: "Credit ₹35 for missing avocados to app wallet.",
+      suggested_offer: "₹50 wallet credit",
       offer_sent: false,
       created_at: "2026-10-22T18:45:00.000Z",
       analyzed_at: "2026-10-22T18:50:00.000Z",
@@ -96,9 +96,9 @@ export default function CustomerSuccessPage() {
     {
       ticket_id: "TCK-1003",
       golden_id: "GID-1003",
-      customer_name: "Kyle Reese",
-      customer_email: "reese.future@resistance.org",
-      customer_ltv: 610.0,
+      customer_name: "Aarav Sharma",
+      customer_email: "aarav.sharma@example.in",
+      customer_ltv: 52200.0,
       customer_churn_label: "MODERATE",
       subject: "Promo voucher not applying on checkout",
       body: "I received a push notification code FLASH50 but the payment screen says expired even though the banner stated valid until midnight.",
@@ -108,7 +108,7 @@ export default function CustomerSuccessPage() {
       category: "Promo / Billing",
       summary: "Push notification discount code failed validation at checkout.",
       recommended_action: "Validate code validity window and issue one-time manual voucher code.",
-      suggested_offer: "€10 voucher code",
+      suggested_offer: "₹100 voucher code",
       offer_sent: false,
       created_at: "2026-10-22T18:20:00.000Z",
       analyzed_at: null,
@@ -116,9 +116,9 @@ export default function CustomerSuccessPage() {
     {
       ticket_id: "TCK-1004",
       golden_id: "GID-1004",
-      customer_name: "Miles Dyson",
-      customer_email: "dyson@skynet-research.com",
-      customer_ltv: 1250.0,
+      customer_name: "Priya Verma",
+      customer_email: "priya.verma1@example.in",
+      customer_ltv: 111600.0,
       customer_churn_label: "HIGH_RISK",
       subject: "Driver left order downstairs in public lobby",
       body: "My instructions clearly stated ring buzzer 4B. The driver left two heavy bags on the street entrance where anyone could take them. Extremely disappointed with service quality lately.",
@@ -128,7 +128,7 @@ export default function CustomerSuccessPage() {
       category: "Driver Conduct",
       summary: "Driver failed building access instructions; high-LTV customer dissatisfied.",
       recommended_action: "Log driver instruction feedback and grant VIP free express delivery credit.",
-      suggested_offer: "VIP delivery pass + €20 credit",
+      suggested_offer: "VIP delivery pass + ₹200 credit",
       offer_sent: false,
       created_at: "2026-10-22T17:40:00.000Z",
       analyzed_at: null,
@@ -208,8 +208,8 @@ export default function CustomerSuccessPage() {
           churn_risk_score: 0.85,
           category: "Order Quality & Delivery Delay",
           summary: "Customer expressed dissatisfaction with recurring quick-commerce service delivery issues. High probability of defection without immediate operator response.",
-          recommended_action: "Dispatch €15 store wallet retention credit with an apology email from customer success.",
-          suggested_offer: "€15 store credit",
+          recommended_action: "Dispatch ₹150 store wallet retention credit with an apology email from customer success.",
+          suggested_offer: "₹150 store credit",
           analyzed_at: new Date().toISOString(),
         }
         setSelectedTicket(enriched)
@@ -246,7 +246,7 @@ export default function CustomerSuccessPage() {
         offer_type: "store_credit",
         offer_value: 15,
       })
-      toast.success(`Retention offer (${selectedTicket.suggested_offer || "€15 credit"}) sent to customer`)
+      toast.success(`Retention offer (${selectedTicket.suggested_offer || "₹150 credit"}) sent to customer`)
       setOfferSentState((prev) => ({ ...prev, [selectedTicket.ticket_id]: true }))
       setSelectedTicket((prev) => (prev ? { ...prev, offer_sent: true } : null))
     } catch (err) {

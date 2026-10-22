@@ -90,7 +90,7 @@ export default function CommandCenterPage() {
               </div>
 
               <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold tracking-tight text-emerald-400 my-2">
-                {roiData ? formatEur(roiData.revenue_saved_today) : "€1,842.50"}
+                {roiData ? formatEur(roiData.revenue_saved_today) : "₹1,842.50"}
               </div>
 
               <p className="text-xs font-mono text-zinc-400 mt-2">
@@ -103,19 +103,19 @@ export default function CommandCenterPage() {
               <div>
                 <span className="text-zinc-400 text-[11px] block">Fraud blocked</span>
                 <span className="text-violet-400 font-semibold text-sm">
-                  {roiData ? formatEur(roiData.breakdown.fraud_blocked) : "€740.00"}
+                  {roiData ? formatEur(roiData.breakdown.fraud_blocked) : "₹740.00"}
                 </span>
               </div>
               <div>
                 <span className="text-zinc-400 text-[11px] block">Churn retained</span>
                 <span className="text-rose-400 font-semibold text-sm">
-                  {roiData ? formatEur(roiData.breakdown.churn_retained) : "€680.00"}
+                  {roiData ? formatEur(roiData.breakdown.churn_retained) : "₹680.00"}
                 </span>
               </div>
               <div>
                 <span className="text-zinc-400 text-[11px] block">Stockouts avoided</span>
                 <span className="text-amber-400 font-semibold text-sm">
-                  {roiData ? formatEur(roiData.breakdown.restock_avoided) : "€422.50"}
+                  {roiData ? formatEur(roiData.breakdown.restock_avoided) : "₹422.50"}
                 </span>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function CommandCenterPage() {
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
             <StatCard
               label="7-Day Cumulative Savings"
-              value={roiData ? formatEur(roiData.revenue_saved_week) : "€12,980.00"}
+              value={roiData ? formatEur(roiData.revenue_saved_week) : "₹12,980.00"}
               sublabel="Trailing 168h analytical aggregation from Exasol"
               trend={{ value: "+9.2%", isPositive: true }}
               accentColor="#34d399"

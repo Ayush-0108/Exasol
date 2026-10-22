@@ -446,7 +446,7 @@ export default function MarginProtectionPage() {
           {/* Chart 2: Margin Lost by Category (Horizontal Bar) */}
           <div className="p-5 rounded-xl bg-zinc-900/40 border border-zinc-850">
             <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-300 mb-4">
-              Margin Lost by Category (€)
+              Margin Lost by Category (₹)
             </h3>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -459,7 +459,7 @@ export default function MarginProtectionPage() {
                     type="number"
                     stroke="#71717a"
                     tick={{ fill: "#a1a1aa", fontSize: 11, fontFamily: "var(--font-geist-mono)" }}
-                    tickFormatter={(v) => `€${v}`}
+                    tickFormatter={(v) => `₹${v}`}
                   />
                   <YAxis
                     dataKey="category"

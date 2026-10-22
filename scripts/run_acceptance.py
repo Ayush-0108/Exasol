@@ -69,7 +69,7 @@ results["5. GET /health"] = (r5.get("ok") is True and r5.get("database") == "con
 
 # Test 6: /api/v1/overview/roi returns valid JSON with revenue_saved_today
 r6 = client.get("/api/v1/overview/roi").json()
-results["6. GET /api/v1/overview/roi"] = (r6.get("ok") is True and "revenue_saved_today" in r6, f"Saved today: €{r6.get('revenue_saved_today')}")
+results["6. GET /api/v1/overview/roi"] = (r6.get("ok") is True and "revenue_saved_today" in r6, f"Saved today: ₹{r6.get('revenue_saved_today')}")
 
 # Test 7: /api/v1/inventory/stockout-warnings returns >= 5 critical SKUs
 r7 = client.get("/api/v1/inventory/stockout-warnings").json()

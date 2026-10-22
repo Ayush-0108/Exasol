@@ -1,22 +1,26 @@
 export function formatEur(amount: number | null | undefined): string {
-  if (amount === null || amount === undefined || isNaN(amount)) return '€0.00'
-  return new Intl.NumberFormat('en-IE', {
+  if (amount === null || amount === undefined || isNaN(amount)) return '₹0.00'
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'INR',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount)
 }
 
 export function formatEurCompact(amount: number | null | undefined): string {
-  if (amount === null || amount === undefined || isNaN(amount)) return '€0'
-  return new Intl.NumberFormat('en-IE', {
+  if (amount === null || amount === undefined || isNaN(amount)) return '₹0'
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'INR',
     notation: 'compact',
     maximumFractionDigits: 1,
   }).format(amount)
 }
+
+// Alias for explicit naming
+export const formatInr = formatEur
+export const formatInrCompact = formatEurCompact
 
 export function formatPercent(value: number | null | undefined, isRatio = false): string {
   if (value === null || value === undefined || isNaN(value)) return '0.0%'

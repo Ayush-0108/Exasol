@@ -161,7 +161,7 @@ export default function LandingPage() {
                     Revenue saved today
                   </span>
                   <div className="text-4xl sm:text-5xl font-mono font-bold tracking-tight text-emerald-400">
-                    {roiData ? formatEur(roiData.revenue_saved_today) : "€1,842.50"}
+                    {roiData ? formatEur(roiData.revenue_saved_today) : "₹1,842.50"}
                   </div>
                 </div>
 
