@@ -143,7 +143,7 @@ export default function InventoryRadarPage() {
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-4 border-b border-zinc-850">
         <div>
           <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold">
-            Module 02 · Dark Store Logistics
+            Dark Store Logistics
           </span>
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-50 mt-1">
             Predictive Inventory Radar

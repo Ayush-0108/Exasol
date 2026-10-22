@@ -310,7 +310,7 @@ export default function ExasolSqlPage() {
             Production analytical views
           </h2>
           <p className="text-xs font-mono text-zinc-400">
-            Embedded DDL views powering Modules 01 through 05 in the Operator Dashboard
+            Embedded DDL views powering the Operator Dashboard
           </p>
         </div>
 

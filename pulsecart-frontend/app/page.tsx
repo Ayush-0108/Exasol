@@ -298,7 +298,7 @@ export default function LandingPage() {
                   Modular Architecture
                 </span>
                 <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 mt-2">
-                  One operator dashboard. Four modules.
+                  One operator dashboard. Complete intelligence.
                 </h2>
                 <p className="text-sm font-mono text-zinc-400 mt-4 leading-relaxed">
                   Every stream aggregates in Exasol, running analytical queries sub-second. Operators resolve issues with single-click operational decisions.
@@ -310,11 +310,10 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Right Column (7 cols): Vertical list of 4 modules */}
+              {/* Right Column (7 cols): Vertical list of intelligence areas */}
               <div className="lg:col-span-7 space-y-4">
                 {[
                   {
-                    num: "01",
                     name: "Identity & Fraud Guard",
                     desc: "Golden record resolution, fuzzy address matching, promo abuse detection.",
                     color: "bg-violet-500",
@@ -322,7 +321,6 @@ export default function LandingPage() {
                     href: "/dashboard/identity",
                   },
                   {
-                    num: "02",
                     name: "Predictive Inventory Radar",
                     desc: "6-hour runout prediction, dark store health maps, one-click replenishment.",
                     color: "bg-amber-500",
@@ -330,7 +328,6 @@ export default function LandingPage() {
                     href: "/dashboard/inventory",
                   },
                   {
-                    num: "03",
                     name: "Autonomous Customer Success",
                     desc: "LLM-powered ticket triage, blended churn scoring, automated retention credit dispatch.",
                     color: "bg-rose-500",
@@ -338,7 +335,6 @@ export default function LandingPage() {
                     href: "/dashboard/tickets",
                   },
                   {
-                    num: "04",
                     name: "Margin Protection & Returns",
                     desc: "Serial refund abuser leaderboard, net-negative toxic SKU tracking.",
                     color: "bg-orange-500",
@@ -347,20 +343,17 @@ export default function LandingPage() {
                   },
                 ].map((mod) => (
                   <Link
-                    key={mod.num}
+                    key={mod.name}
                     href={mod.href}
                     className={`block p-5 rounded-lg bg-zinc-900/50 border border-zinc-800 transition-all ${mod.border} group`}
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-4">
-                        <span className="font-mono text-xs text-zinc-400 pt-0.5">{mod.num}</span>
+                      <div className="flex items-start gap-3">
+                        <span className={`size-2.5 rounded-full ${mod.color} mt-1 shrink-0`} aria-hidden="true" />
                         <div>
-                          <div className="flex items-center gap-2">
-                            <span className={`size-2 rounded-full ${mod.color}`} aria-hidden="true" />
-                            <h3 className="text-sm font-semibold text-zinc-100 group-hover:text-zinc-50">
-                              {mod.name}
-                            </h3>
-                          </div>
+                          <h3 className="text-sm font-semibold text-zinc-100 group-hover:text-zinc-50">
+                            {mod.name}
+                          </h3>
                           <p className="text-xs font-mono text-zinc-400 mt-1 leading-relaxed">
                             {mod.desc}
                           </p>
