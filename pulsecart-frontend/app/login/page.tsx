@@ -54,7 +54,7 @@ export default function LoginPage() {
 
           <div className="max-w-md">
             <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-              Track 02 · Operational Intelligence
+              Operational Intelligence
             </span>
             <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-50 mt-3">
               Pulse<span className="text-emerald-400">Cart</span>

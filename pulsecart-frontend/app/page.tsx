@@ -81,9 +81,6 @@ export default function LandingPage() {
             <span className="text-xl font-semibold tracking-tight text-zinc-50">
               Pulse<span className="text-emerald-400">Cart</span>
             </span>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded">
-              v1.0
-            </span>
           </Link>
 
           <nav className="flex items-center gap-3">
@@ -105,10 +102,6 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
             {/* Left Column (7 cols) */}
             <div className="lg:col-span-7 flex flex-col">
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold mb-4">
-                Track 02 · Customers, Channels &amp; Demand
-              </span>
-
               <div className="mb-6">
                 <SignalRevealText
                   as="h1"
@@ -424,7 +417,7 @@ export default function LandingPage() {
               <span className="text-[11px] font-mono text-zinc-400">· Quick-Commerce Operator Intelligence</span>
             </div>
             <p className="text-xs font-mono text-zinc-400 mt-1">
-              Track 02 hackathon submission · MIT license · Built with Exasol + Groq
+              MIT license · Built with Exasol + Groq
             </p>
           </div>
 
