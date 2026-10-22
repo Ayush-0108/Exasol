@@ -100,11 +100,11 @@ export default function MarginProtectionPage() {
   }
 
   const abusers = abusersData && abusersData.length > 0 ? abusersData : [
-    { rank: 1, golden_id: "GID-1005", customer_name: "Marcus Vance", city: "Berlin", ltv: 310.0, total_returns: 6, total_refunded_eur: 142.50, total_margin_lost_eur: 94.20, return_rate: 0.62, abuse_band: "RETURNS_ABUSER" },
-    { rank: 2, golden_id: "GID-1008", customer_name: "Viktor Drago", city: "Berlin", ltv: 240.0, total_returns: 5, total_refunded_eur: 118.00, total_margin_lost_eur: 78.50, return_rate: 0.55, abuse_band: "RETURNS_ABUSER" },
-    { rank: 3, golden_id: "GID-1002", customer_name: "John Matrix", city: "Berlin", ltv: 420.0, total_returns: 3, total_refunded_eur: 52.00, total_margin_lost_eur: 32.10, return_rate: 0.28, abuse_band: "MODERATE_RISK" },
-    { rank: 4, golden_id: "GID-1003", customer_name: "Kyle Reese", city: "Berlin", ltv: 610.0, total_returns: 2, total_refunded_eur: 34.00, total_margin_lost_eur: 18.50, return_rate: 0.15, abuse_band: "MODERATE_RISK" },
-    { rank: 5, golden_id: "GID-1001", customer_name: "Sarah Connor", city: "Berlin", ltv: 840.5, total_returns: 1, total_refunded_eur: 16.00, total_margin_lost_eur: 8.20, return_rate: 0.05, abuse_band: "LOW_RISK" },
+    { rank: 1, golden_id: "GID-1005", customer_name: "Rohit Gupta", city: "Bengaluru", ltv: 8500.0, total_returns: 6, total_refunded_eur: 142.50, total_margin_lost_eur: 94.20, return_rate: 0.62, abuse_band: "RETURNS_ABUSER" },
+    { rank: 2, golden_id: "GID-1008", customer_name: "Sneha Desai", city: "Bengaluru", ltv: 19350.0, total_returns: 5, total_refunded_eur: 118.00, total_margin_lost_eur: 78.50, return_rate: 0.55, abuse_band: "RETURNS_ABUSER" },
+    { rank: 3, golden_id: "GID-1002", customer_name: "Priya Verma", city: "Bengaluru", ltv: 111600.0, total_returns: 3, total_refunded_eur: 52.00, total_margin_lost_eur: 32.10, return_rate: 0.28, abuse_band: "MODERATE_RISK" },
+    { rank: 4, golden_id: "GID-1003", customer_name: "Aarav Sharma", city: "Bengaluru", ltv: 52200.0, total_returns: 2, total_refunded_eur: 34.00, total_margin_lost_eur: 18.50, return_rate: 0.15, abuse_band: "MODERATE_RISK" },
+    { rank: 5, golden_id: "GID-1001", customer_name: "Aarav Sharma", city: "Bengaluru", ltv: 52200.0, total_returns: 1, total_refunded_eur: 16.00, total_margin_lost_eur: 8.20, return_rate: 0.05, abuse_band: "LOW_RISK" },
   ]
 
   const toxicSkus = toxicSkusData && toxicSkusData.length > 0 ? toxicSkusData : [

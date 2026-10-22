@@ -64,20 +64,20 @@ export default function IdentityFraudPage() {
       // If direct fetch fails or offline, provide realistic fallback for seamless demo inspection
       setCustomer({
         golden_id: id,
-        name: id === "GID-1001" ? "Sarah Connor" : id === "GID-1005" ? "Marcus Vance" : "Elena Rostova",
-        email: id === "GID-1001" ? "sarah.connor@cyberdyne.io" : "operator.user@quickcart.de",
-        phone: "+49 170 8291034",
-        city: "Berlin",
+        name: id === "GID-1001" ? "Aarav Sharma" : id === "GID-1005" ? "Rohit Gupta" : "Priya Verma",
+        email: id === "GID-1001" ? "aarav.sharma@example.in" : "priya.verma@example.in",
+        phone: "+91 98765 43210",
+        city: "Bengaluru",
         status: "ACTIVE",
-        ltv: 840.5,
+        ltv: 52200.0,
         churn_risk: 0.15,
         churn_label: "LOW_RISK",
         fraud_score: id === "GID-1001" ? 0.92 : 0.08,
         resolution_status: id === "GID-1001" ? "SUSPECTED_ALIAS" : "VERIFIED_SINGLE",
         identity_confidence: 0.94,
         addresses: [
-          { address_id: "ADDR-881", street: "Apt 4B, 742 Evergreen Terrace", city: "Springfield", postal_code: "97477" },
-          { address_id: "ADDR-882", street: "742 Evergreen Ter, Apt 4-B", city: "Springfield", postal_code: "97477" }
+          { address_id: "ADDR-001", street: "Flat 402, Sunshine Apartments, 5th Block, Koramangala", city: "Bengaluru", postal_code: "560095" },
+          { address_id: "ADDR-004", street: "Flat 402, Sunshine Apt, 5th Block, Koramangala", city: "Bengaluru", postal_code: "560095" }
         ],
         orders: [
           { order_id: "ORD-9021", total: 42.50, status: "DELIVERED", created_at: "2026-10-21T18:00:00.000Z" },
@@ -145,7 +145,7 @@ export default function IdentityFraudPage() {
     {
       id: "FRD-989",
       timestamp: "2026-10-22T19:05:00.000Z",
-      burner_email: "anna.schmidt.berlin@gmail.com",
+      burner_email: "ananya.sharma.blr@gmail.com",
       promo_code: "WELCOME10",
       match_method: "clean_record",
       match_score: 0.12,
@@ -289,7 +289,7 @@ export default function IdentityFraudPage() {
                     <MapPin className="size-3 text-zinc-400" aria-hidden="true" />
                     City
                   </dt>
-                  <dd className="text-zinc-200">{customer.city || "Berlin"}</dd>
+                  <dd className="text-zinc-200">{customer.city || "Bengaluru"}</dd>
                 </div>
                 <div className="space-y-0.5">
                   <dt className="text-zinc-400">Identity Confidence</dt>

@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import execute_query, execute_statement
 
 CUSTOMERS = ['GID-1001', 'GID-1002', 'GID-1005', 'GID-1006', 'GID-1007', 'GID-1008', 'GID-1009', 'GID-1010']
-STORES = ['STORE-BER-01', 'STORE-HAM-01', 'STORE-MUC-01', 'STORE-HBL-01']
+STORES = ['STORE-BLR-01', 'STORE-BLR-02', 'STORE-BLR-03', 'STORE-BLR-04']
 SKUS = [
     ('MK-001', 1.49), ('BR-002', 2.29), ('EG-003', 2.49), ('BV-004', 3.99),
     ('BG-005', 1.79), ('AV-006', 1.19), ('CH-007', 3.49), ('CP-008', 5.99),
@@ -40,16 +40,16 @@ TICKET_TEMPLATES = [
     {'subject': 'Missing grocery items', 'body': 'The bread and milk were missing from my bag, driver gave no explanation.'},
     {'subject': 'Damaged egg carton', 'body': 'Four out of six eggs arrived cracked. Need a refund.'},
     {'subject': 'Outstanding service today', 'body': 'Arrived in 9 minutes, courteous driver, everything fresh. Thank you!'},
-    {'subject': 'Payment charged twice', 'body': 'I see two authorizations for €38.50 on my credit card statement for one order.'},
+    {'subject': 'Payment charged twice', 'body': 'I see two authorizations on my credit card statement for one order.'},
     {'subject': 'Checkout app crash', 'body': 'When entering delivery notes the app crashed. iOS 17.5 iPhone 14 Pro.'},
 ]
 
 BURNER_EMAILS = [
-    ('sarah.connor+spam@gmail.com', 'GID-1001', 'Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477'),
-    ('alex.mercer1@example.com', 'GID-1002', 'Building 2, Suite 300, 100 Market St, San Francisco, CA 94105'),
-    ('sarah.c0nor@example.com', 'GID-1001', '742 Evergreen Terr, Springfield, OR'),
-    ('fake.user99@disposable.com', None, '999 Random Lane, Nowhere, USA'),
-    ('j.doe+promo@example.com', 'GID-1005', 'Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477'),
+    ('aarav.sharma+spam@gmail.com', 'GID-1001', 'Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095'),
+    ('priya.verma1@example.in', 'GID-1002', 'No 12, 2nd Cross, 1st Stage, Indiranagar, Bengaluru 560038'),
+    ('aarav.sh0rma@example.in', 'GID-1001', 'Flat 402, Sunshine Apt, 5th Block, Koramangala, Bengaluru 560095'),
+    ('fake.user99@disposable.com', None, 'Villa 8, Sobha Dream Acres, Whitefield, Bengaluru 560066'),
+    ('j.doe+promo@example.in', 'GID-1005', 'Flat 402, Sunshine Apt, 5th Block, Koramangala, Bengaluru 560095'),
 ]
 
 
@@ -81,7 +81,7 @@ def insert_order():
         "iid": item_id, "oid": order_id, "sku": item_choice, "qty": qty, "price": price
     })
 
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] Order created: {order_id} ({customer} at {store}, €{total})")
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Order created: {order_id} ({customer} at {store}, ₹{total})")
 
 
 def insert_ticket():

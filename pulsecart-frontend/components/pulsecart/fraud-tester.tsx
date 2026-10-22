@@ -22,9 +22,9 @@ interface FraudTesterProps {
 
 export function FraudTester({ onEvaluationComplete }: FraudTesterProps) {
   const prefersReducedMotion = useReducedMotion()
-  const [email, setEmail] = useState("sarah.connor+spam@gmail.com")
+  const [email, setEmail] = useState("aarav.sharma+spam@gmail.com")
   const [address, setAddress] = useState(
-    "Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477"
+    "Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095"
   )
   const [promoCode, setPromoCode] = useState("$15OFF")
   const [loading, setLoading] = useState(false)
@@ -76,8 +76,8 @@ export function FraudTester({ onEvaluationComplete }: FraudTesterProps) {
             size="sm"
             onClick={() =>
               applyPreset(
-                "sarah.connor+spam@gmail.com",
-                "Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477",
+                "aarav.sharma+spam@gmail.com",
+                "Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095",
                 "$15OFF"
               )
             }
@@ -92,9 +92,9 @@ export function FraudTester({ onEvaluationComplete }: FraudTesterProps) {
             size="sm"
             onClick={() =>
               applyPreset(
-                "elena.rostova@berlin-tech.de",
-                "Torstrasse 142, 10119 Berlin",
-                "WELCOME10"
+                "kavita.sharma@example.in",
+                "Flat 101, Brigade Gateway, Malleshwaram, Bengaluru 560055",
+                "WELCOME5"
               )
             }
             className="text-[11px] font-mono h-7 px-2 text-zinc-400 hover:text-zinc-200"

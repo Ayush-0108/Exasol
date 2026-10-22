@@ -197,36 +197,36 @@ CREATE TABLE PULSECART.fraud_event (
 -- ============================================================================
 
 -- Customers
-INSERT INTO PULSECART.customer_golden_id VALUES
-  ('GID-1001', 'CUST-001', 'sarah.connor@example.com',      '+1-555-0199',     'Sarah Connor',  'Springfield', 580.00,  0.32, 'monitor',   'active', 0.10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1002', 'CUST-002', 'alex.mercer@example.com',       '+1-555-0144',     'Alex Mercer',   'San Francisco', 1240.00, 0.18, 'healthy', 'active', 0.05, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1003', 'CUST-003', 'sarah.connor+spam@gmail.com',   '+1-555-0199',     'Sarah Connor',  'Springfield', 580.00,  0.32, 'monitor',   'active', 0.65, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1004', 'CUST-004', 'alex.mercer1@example.com',      '+1-555-0144',     'Alex Mercer',   'San Francisco', 1240.00, 0.18, 'healthy', 'active', 0.55, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1005', 'CUST-005', 'j.doe@example.com',             '+1-555-0188',     'John Doe',      'Springfield', 95.00,   0.78, 'critical',  'active', 0.20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1006', 'CUST-006', 'maya.sharma@example.com',       '+49-30-12345678', 'Maya Sharma',   'Berlin',      320.00,  0.85, 'critical',  'active', 0.05, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1007', 'CUST-007', 'liam.chen@example.com',         '+49-40-98765432', 'Liam Chen',     'Hamburg',     410.00,  0.72, 'critical',  'active', 0.05, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1008', 'CUST-008', 'noah.patel@example.com',        '+1-555-0233',     'Noah Patel',    'New York',    215.00,  0.45, 'at_risk',   'active', 0.30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1009', 'CUST-009', 'emma.kim@example.com',          '+1-555-0244',     'Emma Kim',      'Chicago',     680.00,  0.15, 'healthy',   'active', 0.05, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  ('GID-1010', 'CUST-010', 'lucas.silva@example.com',       '+1-555-0255',     'Lucas Silva',   'Los Angeles', 150.00,  0.68, 'critical',  'active', 0.10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO PULSECART.customer_golden_id (golden_id, customer_id, email, phone, name, city, ltv, churn_risk, churn_label, status, fraud_score) VALUES
+  ('GID-1001', 'CUST-001', 'aarav.sharma@example.in',      '+91 98765 43210', 'Aarav Sharma',    'Bengaluru', 52200.00, 0.32, 'monitor',   'active', 0.10),
+  ('GID-1002', 'CUST-002', 'priya.verma@example.in',       '+91 70123 45678', 'Priya Verma',     'Bengaluru', 111600.00, 0.18, 'healthy', 'active', 0.05),
+  ('GID-1003', 'CUST-003', 'aarav.sharma+spam@gmail.com',  '+91 98765 43210', 'Aarav Sharma',    'Bengaluru', 52200.00, 0.32, 'monitor',   'active', 0.65),
+  ('GID-1004', 'CUST-004', 'priya.verma1@example.in',      '+91 70123 45678', 'Priya Verma',     'Bengaluru', 111600.00, 0.18, 'healthy', 'active', 0.55),
+  ('GID-1005', 'CUST-005', 'j.doe@example.in',             '+91 99887 76655', 'Rohit Gupta',     'Bengaluru', 8500.00,  0.78, 'critical', 'active', 0.20),
+  ('GID-1006', 'CUST-006', 'lakshmi.nair@example.in',      '+91 90123 45678', 'Lakshmi Nair',    'Bengaluru', 28800.00, 0.85, 'critical', 'active', 0.05),
+  ('GID-1007', 'CUST-007', 'arjun.reddy@example.in',       '+91 91234 56789', 'Arjun Reddy',     'Bengaluru', 36900.00, 0.72, 'critical', 'active', 0.05),
+  ('GID-1008', 'CUST-008', 'sneha.desai@example.in',       '+91 93456 78901', 'Sneha Desai',     'Bengaluru', 19350.00, 0.45, 'at_risk', 'active', 0.30),
+  ('GID-1009', 'CUST-009', 'rajesh.patel@example.in',      '+91 94567 89012', 'Rajesh Patel',    'Bengaluru', 61200.00, 0.15, 'healthy', 'active', 0.05),
+  ('GID-1010', 'CUST-010', 'sourav.das@example.in',        '+91 95678 90123', 'Sourav Das',      'Bengaluru', 13500.00, 0.68, 'critical', 'active', 0.10);
 
 -- Addresses
-INSERT INTO PULSECART.customer_address_history VALUES
-  ('ADDR-001', 'GID-1001', 'Apartment 4B, 742 Evergreen Terrace, Springfield, OR 97477', CURRENT_TIMESTAMP),
-  ('ADDR-002', 'GID-1002', 'Building 2, Suite 300, 100 Market St, San Francisco, CA 94105', CURRENT_TIMESTAMP),
-  ('ADDR-003', 'GID-1002', '456 Elm Street, Apt 12, Seattle, WA 98101', CURRENT_TIMESTAMP),
-  ('ADDR-004', 'GID-1005', 'Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477', CURRENT_TIMESTAMP),
-  ('ADDR-005', 'GID-1006', 'Linienstraße 100, 10115 Berlin, Germany', CURRENT_TIMESTAMP),
-  ('ADDR-006', 'GID-1007', 'Reeperbahn 1, 20359 Hamburg, Germany', CURRENT_TIMESTAMP),
-  ('ADDR-007', 'GID-1008', '500 Pine St, Apt 9C, New York, NY 10001', CURRENT_TIMESTAMP),
-  ('ADDR-008', 'GID-1009', '88 Oak Avenue, Chicago, IL 60611', CURRENT_TIMESTAMP),
-  ('ADDR-009', 'GID-1010', '12 Sunset Blvd, Los Angeles, CA 90028', CURRENT_TIMESTAMP);
+INSERT INTO PULSECART.customer_address_history (address_id, golden_id, address_text) VALUES
+  ('ADDR-001', 'GID-1001', 'Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095'),
+  ('ADDR-002', 'GID-1002', 'No 12, 2nd Cross, 1st Stage, Indiranagar, Bengaluru 560038'),
+  ('ADDR-003', 'GID-1002', 'Plot 7, HSR Layout Sector 6, Bengaluru 560102'),
+  ('ADDR-004', 'GID-1005', 'Flat 402, Sunshine Apt, 5th Block, Koramangala, Bengaluru 560095'),
+  ('ADDR-005', 'GID-1006', 'No 14, Jayanagar 4th Block, 11th Main Road, Bengaluru 560011'),
+  ('ADDR-006', 'GID-1007', 'Villa 8, Sobha Dream Acres, Whitefield, Bengaluru 560066'),
+  ('ADDR-007', 'GID-1008', 'Flat 9C, Prestige St Johns Wood, Hennur Road, Bengaluru 560043'),
+  ('ADDR-008', 'GID-1009', 'B-201, Mantri Classic, HSR Layout Sector 2, Bengaluru 560102'),
+  ('ADDR-009', 'GID-1010', '23B, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038');
 
 -- Dark Stores
 INSERT INTO PULSECART.dark_store VALUES
-  ('STORE-BER-01', 'Berlin-Mitte Dark Store',     'Berlin Zone A',    'Berlin',   52.5200, 13.4050, TRUE),
-  ('STORE-HAM-01', 'Hamburg-Altona Dark Store',   'Hamburg Zone A',   'Hamburg',  53.5511, 9.9937,  TRUE),
-  ('STORE-MUC-01', 'Munich-Schwabing Dark Store', 'Munich Zone A',    'Munich',   48.1500, 11.5833, TRUE),
-  ('STORE-HBL-01', 'Hubballi Zone A Dark Store',  'Hubballi Zone A',  'Hubballi', 15.3647, 75.1240, TRUE);
+  ('STORE-BLR-01', 'Koramangala Dark Store',     'Bengaluru Zone A — Koramangala',  'Bengaluru', 12.9352, 77.6245, TRUE),
+  ('STORE-BLR-02', 'Indiranagar Dark Store',     'Bengaluru Zone B — Indiranagar',  'Bengaluru', 12.9719, 77.6412, TRUE),
+  ('STORE-BLR-03', 'HSR Layout Dark Store',      'Bengaluru Zone C — HSR Layout',   'Bengaluru', 12.9116, 77.6474, TRUE),
+  ('STORE-BLR-04', 'Whitefield Dark Store',      'Bengaluru Zone D — Whitefield',   'Bengaluru', 12.9698, 77.7500, TRUE);
 
 -- Inventory SKUs
 INSERT INTO PULSECART.inventory_item VALUES
@@ -245,118 +245,118 @@ INSERT INTO PULSECART.inventory_item VALUES
 
 -- Store Inventory (48 rows across 4 stores)
 INSERT INTO PULSECART.store_inventory VALUES
-  -- Berlin (critical on MK, BR, AV, JK)
-  ('SI-001', 'STORE-BER-01', 'MK-001', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('SI-002', 'STORE-BER-01', 'BR-002', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('SI-003', 'STORE-BER-01', 'EG-003', 8,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-004', 'STORE-BER-01', 'BV-004', 25, 10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-005', 'STORE-BER-01', 'BG-005', 15, 10, CURRENT_TIMESTAMP),
-  ('SI-006', 'STORE-BER-01', 'AV-006', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('SI-007', 'STORE-BER-01', 'CH-007', 18, 10, CURRENT_TIMESTAMP),
-  ('SI-008', 'STORE-BER-01', 'CP-008', 22, 10, CURRENT_TIMESTAMP),
-  ('SI-009', 'STORE-BER-01', 'TP-009', 30, 10, CURRENT_TIMESTAMP),
-  ('SI-010', 'STORE-BER-01', 'PS-010', 12, 10, CURRENT_TIMESTAMP),
-  ('SI-011', 'STORE-BER-01', 'JK-011', 6,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-012', 'STORE-BER-01', 'YG-012', 20, 10, CURRENT_TIMESTAMP),
-  -- Hamburg (critical on MK, EG, PS)
-  ('SI-013', 'STORE-HAM-01', 'MK-001', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-014', 'STORE-HAM-01', 'BR-002', 15, 10, CURRENT_TIMESTAMP),
-  ('SI-015', 'STORE-HAM-01', 'EG-003', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('SI-016', 'STORE-HAM-01', 'BV-004', 30, 10, CURRENT_TIMESTAMP),
-  ('SI-017', 'STORE-HAM-01', 'BG-005', 22, 10, CURRENT_TIMESTAMP),
-  ('SI-018', 'STORE-HAM-01', 'AV-006', 16, 10, CURRENT_TIMESTAMP),
-  ('SI-019', 'STORE-HAM-01', 'CH-007', 14, 10, CURRENT_TIMESTAMP),
-  ('SI-020', 'STORE-HAM-01', 'CP-008', 19, 10, CURRENT_TIMESTAMP),
-  ('SI-021', 'STORE-HAM-01', 'TP-009', 25, 10, CURRENT_TIMESTAMP),
-  ('SI-022', 'STORE-HAM-01', 'PS-010', 2,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('SI-023', 'STORE-HAM-01', 'JK-011', 18, 10, CURRENT_TIMESTAMP),
-  ('SI-024', 'STORE-HAM-01', 'YG-012', 24, 10, CURRENT_TIMESTAMP),
-  -- Munich (critical on BR, AV, CP)
-  ('SI-025', 'STORE-MUC-01', 'MK-001', 20, 10, CURRENT_TIMESTAMP),
-  ('SI-026', 'STORE-MUC-01', 'BR-002', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('SI-027', 'STORE-MUC-01', 'EG-003', 18, 10, CURRENT_TIMESTAMP),
-  ('SI-028', 'STORE-MUC-01', 'BV-004', 19, 10, CURRENT_TIMESTAMP),
-  ('SI-029', 'STORE-MUC-01', 'BG-005', 25, 10, CURRENT_TIMESTAMP),
-  ('SI-030', 'STORE-MUC-01', 'AV-006', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-031', 'STORE-MUC-01', 'CH-007', 22, 10, CURRENT_TIMESTAMP),
-  ('SI-032', 'STORE-MUC-01', 'CP-008', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('SI-033', 'STORE-MUC-01', 'TP-009', 18, 10, CURRENT_TIMESTAMP),
-  ('SI-034', 'STORE-MUC-01', 'PS-010', 14, 10, CURRENT_TIMESTAMP),
-  ('SI-035', 'STORE-MUC-01', 'JK-011', 21, 10, CURRENT_TIMESTAMP),
-  ('SI-036', 'STORE-MUC-01', 'YG-012', 15, 10, CURRENT_TIMESTAMP),
-  -- Hubballi (critical on MK, EG, BG, YG)
-  ('SI-037', 'STORE-HBL-01', 'MK-001', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-038', 'STORE-HBL-01', 'BR-002', 16, 10, CURRENT_TIMESTAMP),
-  ('SI-039', 'STORE-HBL-01', 'EG-003', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('SI-040', 'STORE-HBL-01', 'BV-004', 28, 10, CURRENT_TIMESTAMP),
-  ('SI-041', 'STORE-HBL-01', 'BG-005', 6,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('SI-042', 'STORE-HBL-01', 'AV-006', 20, 10, CURRENT_TIMESTAMP),
-  ('SI-043', 'STORE-HBL-01', 'CH-007', 15, 10, CURRENT_TIMESTAMP),
-  ('SI-044', 'STORE-HBL-01', 'CP-008', 25, 10, CURRENT_TIMESTAMP),
-  ('SI-045', 'STORE-HBL-01', 'TP-009', 35, 10, CURRENT_TIMESTAMP),
-  ('SI-046', 'STORE-HBL-01', 'PS-010', 16, 10, CURRENT_TIMESTAMP),
-  ('SI-047', 'STORE-HBL-01', 'JK-011', 19, 10, CURRENT_TIMESTAMP),
-  ('SI-048', 'STORE-HBL-01', 'YG-012', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2));
+  -- Bengaluru Zone A — Koramangala (critical on MK, BR, AV, JK)
+  ('SI-001', 'STORE-BLR-01', 'MK-001', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('SI-002', 'STORE-BLR-01', 'BR-002', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('SI-003', 'STORE-BLR-01', 'EG-003', 8,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-004', 'STORE-BLR-01', 'BV-004', 25, 10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-005', 'STORE-BLR-01', 'BG-005', 15, 10, CURRENT_TIMESTAMP),
+  ('SI-006', 'STORE-BLR-01', 'AV-006', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('SI-007', 'STORE-BLR-01', 'CH-007', 18, 10, CURRENT_TIMESTAMP),
+  ('SI-008', 'STORE-BLR-01', 'CP-008', 22, 10, CURRENT_TIMESTAMP),
+  ('SI-009', 'STORE-BLR-01', 'TP-009', 30, 10, CURRENT_TIMESTAMP),
+  ('SI-010', 'STORE-BLR-01', 'PS-010', 12, 10, CURRENT_TIMESTAMP),
+  ('SI-011', 'STORE-BLR-01', 'JK-011', 6,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-012', 'STORE-BLR-01', 'YG-012', 20, 10, CURRENT_TIMESTAMP),
+  -- Bengaluru Zone B — Indiranagar (critical on MK, EG, PS)
+  ('SI-013', 'STORE-BLR-02', 'MK-001', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-014', 'STORE-BLR-02', 'BR-002', 15, 10, CURRENT_TIMESTAMP),
+  ('SI-015', 'STORE-BLR-02', 'EG-003', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('SI-016', 'STORE-BLR-02', 'BV-004', 30, 10, CURRENT_TIMESTAMP),
+  ('SI-017', 'STORE-BLR-02', 'BG-005', 22, 10, CURRENT_TIMESTAMP),
+  ('SI-018', 'STORE-BLR-02', 'AV-006', 16, 10, CURRENT_TIMESTAMP),
+  ('SI-019', 'STORE-BLR-02', 'CH-007', 14, 10, CURRENT_TIMESTAMP),
+  ('SI-020', 'STORE-BLR-02', 'CP-008', 19, 10, CURRENT_TIMESTAMP),
+  ('SI-021', 'STORE-BLR-02', 'TP-009', 25, 10, CURRENT_TIMESTAMP),
+  ('SI-022', 'STORE-BLR-02', 'PS-010', 2,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('SI-023', 'STORE-BLR-02', 'JK-011', 18, 10, CURRENT_TIMESTAMP),
+  ('SI-024', 'STORE-BLR-02', 'YG-012', 24, 10, CURRENT_TIMESTAMP),
+  -- Bengaluru Zone C — HSR Layout (critical on BR, AV, CP)
+  ('SI-025', 'STORE-BLR-03', 'MK-001', 20, 10, CURRENT_TIMESTAMP),
+  ('SI-026', 'STORE-BLR-03', 'BR-002', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('SI-027', 'STORE-BLR-03', 'EG-003', 18, 10, CURRENT_TIMESTAMP),
+  ('SI-028', 'STORE-BLR-03', 'BV-004', 19, 10, CURRENT_TIMESTAMP),
+  ('SI-029', 'STORE-BLR-03', 'BG-005', 25, 10, CURRENT_TIMESTAMP),
+  ('SI-030', 'STORE-BLR-03', 'AV-006', 3,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-031', 'STORE-BLR-03', 'CH-007', 22, 10, CURRENT_TIMESTAMP),
+  ('SI-032', 'STORE-BLR-03', 'CP-008', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('SI-033', 'STORE-BLR-03', 'TP-009', 18, 10, CURRENT_TIMESTAMP),
+  ('SI-034', 'STORE-BLR-03', 'PS-010', 14, 10, CURRENT_TIMESTAMP),
+  ('SI-035', 'STORE-BLR-03', 'JK-011', 21, 10, CURRENT_TIMESTAMP),
+  ('SI-036', 'STORE-BLR-03', 'YG-012', 15, 10, CURRENT_TIMESTAMP),
+  -- Bengaluru Zone D — Whitefield (critical on MK, EG, BG, YG)
+  ('SI-037', 'STORE-BLR-04', 'MK-001', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-038', 'STORE-BLR-04', 'BR-002', 16, 10, CURRENT_TIMESTAMP),
+  ('SI-039', 'STORE-BLR-04', 'EG-003', 4,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('SI-040', 'STORE-BLR-04', 'BV-004', 28, 10, CURRENT_TIMESTAMP),
+  ('SI-041', 'STORE-BLR-04', 'BG-005', 6,  10, ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('SI-042', 'STORE-BLR-04', 'AV-006', 20, 10, CURRENT_TIMESTAMP),
+  ('SI-043', 'STORE-BLR-04', 'CH-007', 15, 10, CURRENT_TIMESTAMP),
+  ('SI-044', 'STORE-BLR-04', 'CP-008', 25, 10, CURRENT_TIMESTAMP),
+  ('SI-045', 'STORE-BLR-04', 'TP-009', 35, 10, CURRENT_TIMESTAMP),
+  ('SI-046', 'STORE-BLR-04', 'PS-010', 16, 10, CURRENT_TIMESTAMP),
+  ('SI-047', 'STORE-BLR-04', 'JK-011', 19, 10, CURRENT_TIMESTAMP),
+  ('SI-048', 'STORE-BLR-04', 'YG-012', 5,  10, ADD_DAYS(CURRENT_TIMESTAMP, -2));
 
 -- Demand Forecast (48 rows matching store inventory)
 INSERT INTO PULSECART.demand_forecast (forecast_id, store_id, sku, forecast_date, predicted_demand_24h, predicted_demand_6h) VALUES
-  -- Berlin
-  ('DF-001', 'STORE-BER-01', 'MK-001', CURRENT_DATE, 24, 7),
-  ('DF-002', 'STORE-BER-01', 'BR-002', CURRENT_DATE, 18, 6),
-  ('DF-003', 'STORE-BER-01', 'EG-003', CURRENT_DATE, 15, 9),
-  ('DF-004', 'STORE-BER-01', 'BV-004', CURRENT_DATE, 12, 3),
-  ('DF-005', 'STORE-BER-01', 'BG-005', CURRENT_DATE, 20, 5),
-  ('DF-006', 'STORE-BER-01', 'AV-006', CURRENT_DATE, 22, 6),
-  ('DF-007', 'STORE-BER-01', 'CH-007', CURRENT_DATE, 14, 4),
-  ('DF-008', 'STORE-BER-01', 'CP-008', CURRENT_DATE, 10, 3),
-  ('DF-009', 'STORE-BER-01', 'TP-009', CURRENT_DATE, 8,  2),
-  ('DF-010', 'STORE-BER-01', 'PS-010', CURRENT_DATE, 16, 4),
-  ('DF-011', 'STORE-BER-01', 'JK-011', CURRENT_DATE, 20, 7),
-  ('DF-012', 'STORE-BER-01', 'YG-012', CURRENT_DATE, 12, 3),
-  -- Hamburg
-  ('DF-013', 'STORE-HAM-01', 'MK-001', CURRENT_DATE, 25, 6),
-  ('DF-014', 'STORE-HAM-01', 'BR-002', CURRENT_DATE, 14, 3),
-  ('DF-015', 'STORE-HAM-01', 'EG-003', CURRENT_DATE, 18, 5),
-  ('DF-016', 'STORE-HAM-01', 'BV-004', CURRENT_DATE, 15, 4),
-  ('DF-017', 'STORE-HAM-01', 'BG-005', CURRENT_DATE, 19, 5),
-  ('DF-018', 'STORE-HAM-01', 'AV-006', CURRENT_DATE, 12, 3),
-  ('DF-019', 'STORE-HAM-01', 'CH-007', CURRENT_DATE, 16, 4),
-  ('DF-020', 'STORE-HAM-01', 'CP-008', CURRENT_DATE, 11, 2),
-  ('DF-021', 'STORE-HAM-01', 'TP-009', CURRENT_DATE, 9,  2),
-  ('DF-022', 'STORE-HAM-01', 'PS-010', CURRENT_DATE, 20, 4),
-  ('DF-023', 'STORE-HAM-01', 'JK-011', CURRENT_DATE, 14, 3),
-  ('DF-024', 'STORE-HAM-01', 'YG-012', CURRENT_DATE, 10, 2),
-  -- Munich
-  ('DF-025', 'STORE-MUC-01', 'MK-001', CURRENT_DATE, 18, 4),
-  ('DF-026', 'STORE-MUC-01', 'BR-002', CURRENT_DATE, 22, 6),
-  ('DF-027', 'STORE-MUC-01', 'EG-003', CURRENT_DATE, 15, 3),
-  ('DF-028', 'STORE-MUC-01', 'BV-004', CURRENT_DATE, 13, 3),
-  ('DF-029', 'STORE-MUC-01', 'BG-005', CURRENT_DATE, 18, 4),
-  ('DF-030', 'STORE-MUC-01', 'AV-006', CURRENT_DATE, 24, 5),
-  ('DF-031', 'STORE-MUC-01', 'CH-007', CURRENT_DATE, 14, 3),
-  ('DF-032', 'STORE-MUC-01', 'CP-008', CURRENT_DATE, 20, 6),
-  ('DF-033', 'STORE-MUC-01', 'TP-009', CURRENT_DATE, 10, 2),
-  ('DF-034', 'STORE-MUC-01', 'PS-010', CURRENT_DATE, 15, 3),
-  ('DF-035', 'STORE-MUC-01', 'JK-011', CURRENT_DATE, 17, 4),
-  ('DF-036', 'STORE-MUC-01', 'YG-012', CURRENT_DATE, 12, 3),
-  -- Hubballi
-  ('DF-037', 'STORE-HBL-01', 'MK-001', CURRENT_DATE, 24, 6),
-  ('DF-038', 'STORE-HBL-01', 'BR-002', CURRENT_DATE, 15, 3),
-  ('DF-039', 'STORE-HBL-01', 'EG-003', CURRENT_DATE, 19, 5),
-  ('DF-040', 'STORE-HBL-01', 'BV-004', CURRENT_DATE, 14, 3),
-  ('DF-041', 'STORE-HBL-01', 'BG-005', CURRENT_DATE, 26, 8),
-  ('DF-042', 'STORE-HBL-01', 'AV-006', CURRENT_DATE, 16, 4),
-  ('DF-043', 'STORE-HBL-01', 'CH-007', CURRENT_DATE, 12, 3),
-  ('DF-044', 'STORE-HBL-01', 'CP-008', CURRENT_DATE, 18, 4),
-  ('DF-045', 'STORE-HBL-01', 'TP-009', CURRENT_DATE, 10, 2),
-  ('DF-046', 'STORE-HBL-01', 'PS-010', CURRENT_DATE, 14, 3),
-  ('DF-047', 'STORE-HBL-01', 'JK-011', CURRENT_DATE, 16, 4),
-  ('DF-048', 'STORE-HBL-01', 'YG-012', CURRENT_DATE, 22, 6);
+  -- Koramangala
+  ('DF-001', 'STORE-BLR-01', 'MK-001', CURRENT_DATE, 24, 7),
+  ('DF-002', 'STORE-BLR-01', 'BR-002', CURRENT_DATE, 18, 6),
+  ('DF-003', 'STORE-BLR-01', 'EG-003', CURRENT_DATE, 15, 9),
+  ('DF-004', 'STORE-BLR-01', 'BV-004', CURRENT_DATE, 12, 3),
+  ('DF-005', 'STORE-BLR-01', 'BG-005', CURRENT_DATE, 20, 5),
+  ('DF-006', 'STORE-BLR-01', 'AV-006', CURRENT_DATE, 22, 6),
+  ('DF-007', 'STORE-BLR-01', 'CH-007', CURRENT_DATE, 14, 4),
+  ('DF-008', 'STORE-BLR-01', 'CP-008', CURRENT_DATE, 10, 3),
+  ('DF-009', 'STORE-BLR-01', 'TP-009', CURRENT_DATE, 8,  2),
+  ('DF-010', 'STORE-BLR-01', 'PS-010', CURRENT_DATE, 16, 4),
+  ('DF-011', 'STORE-BLR-01', 'JK-011', CURRENT_DATE, 20, 7),
+  ('DF-012', 'STORE-BLR-01', 'YG-012', CURRENT_DATE, 12, 3),
+  -- Indiranagar
+  ('DF-013', 'STORE-BLR-02', 'MK-001', CURRENT_DATE, 25, 6),
+  ('DF-014', 'STORE-BLR-02', 'BR-002', CURRENT_DATE, 14, 3),
+  ('DF-015', 'STORE-BLR-02', 'EG-003', CURRENT_DATE, 18, 5),
+  ('DF-016', 'STORE-BLR-02', 'BV-004', CURRENT_DATE, 15, 4),
+  ('DF-017', 'STORE-BLR-02', 'BG-005', CURRENT_DATE, 19, 5),
+  ('DF-018', 'STORE-BLR-02', 'AV-006', CURRENT_DATE, 12, 3),
+  ('DF-019', 'STORE-BLR-02', 'CH-007', CURRENT_DATE, 16, 4),
+  ('DF-020', 'STORE-BLR-02', 'CP-008', CURRENT_DATE, 11, 2),
+  ('DF-021', 'STORE-BLR-02', 'TP-009', CURRENT_DATE, 9,  2),
+  ('DF-022', 'STORE-BLR-02', 'PS-010', CURRENT_DATE, 20, 4),
+  ('DF-023', 'STORE-BLR-02', 'JK-011', CURRENT_DATE, 14, 3),
+  ('DF-024', 'STORE-BLR-02', 'YG-012', CURRENT_DATE, 10, 2),
+  -- HSR Layout
+  ('DF-025', 'STORE-BLR-03', 'MK-001', CURRENT_DATE, 18, 4),
+  ('DF-026', 'STORE-BLR-03', 'BR-002', CURRENT_DATE, 22, 6),
+  ('DF-027', 'STORE-BLR-03', 'EG-003', CURRENT_DATE, 15, 3),
+  ('DF-028', 'STORE-BLR-03', 'BV-004', CURRENT_DATE, 13, 3),
+  ('DF-029', 'STORE-BLR-03', 'BG-005', CURRENT_DATE, 18, 4),
+  ('DF-030', 'STORE-BLR-03', 'AV-006', CURRENT_DATE, 24, 5),
+  ('DF-031', 'STORE-BLR-03', 'CH-007', CURRENT_DATE, 14, 3),
+  ('DF-032', 'STORE-BLR-03', 'CP-008', CURRENT_DATE, 20, 6),
+  ('DF-033', 'STORE-BLR-03', 'TP-009', CURRENT_DATE, 10, 2),
+  ('DF-034', 'STORE-BLR-03', 'PS-010', CURRENT_DATE, 15, 3),
+  ('DF-035', 'STORE-BLR-03', 'JK-011', CURRENT_DATE, 17, 4),
+  ('DF-036', 'STORE-BLR-03', 'YG-012', CURRENT_DATE, 12, 3),
+  -- Whitefield
+  ('DF-037', 'STORE-BLR-04', 'MK-001', CURRENT_DATE, 24, 6),
+  ('DF-038', 'STORE-BLR-04', 'BR-002', CURRENT_DATE, 15, 3),
+  ('DF-039', 'STORE-BLR-04', 'EG-003', CURRENT_DATE, 19, 5),
+  ('DF-040', 'STORE-BLR-04', 'BV-004', CURRENT_DATE, 14, 3),
+  ('DF-041', 'STORE-BLR-04', 'BG-005', CURRENT_DATE, 26, 8),
+  ('DF-042', 'STORE-BLR-04', 'AV-006', CURRENT_DATE, 16, 4),
+  ('DF-043', 'STORE-BLR-04', 'CH-007', CURRENT_DATE, 12, 3),
+  ('DF-044', 'STORE-BLR-04', 'CP-008', CURRENT_DATE, 18, 4),
+  ('DF-045', 'STORE-BLR-04', 'TP-009', CURRENT_DATE, 10, 2),
+  ('DF-046', 'STORE-BLR-04', 'PS-010', CURRENT_DATE, 14, 3),
+  ('DF-047', 'STORE-BLR-04', 'JK-011', CURRENT_DATE, 16, 4),
+  ('DF-048', 'STORE-BLR-04', 'YG-012', CURRENT_DATE, 22, 6);
 
 -- Support Tickets (8 initial tickets covering churn spectrum)
 INSERT INTO PULSECART.support_tickets (ticket_id, golden_id, subject, body, created_at) VALUES
   ('TCK-1001', 'GID-1006', 'Late delivery - third time',
-   'This is the THIRD time my order has been late. I switched to your app because you promised 15-min delivery but every order this week took 40+ min. Cancelling my membership and going back to Flink.',
+   'This is the THIRD time my order has been late. I switched to your app because you promised 15-min delivery but every order this week took 40+ min. Cancelling my membership and going back to Zepto.',
    CURRENT_TIMESTAMP),
   ('TCK-1002', 'GID-1007', 'Missing items - refund required',
    'Two items were missing from my delivery — the milk and bread. Driver said out of stock but nobody told me before delivery and I was charged full price. This keeps happening.',
@@ -371,37 +371,37 @@ INSERT INTO PULSECART.support_tickets (ticket_id, golden_id, subject, body, crea
    'Love your service but the app has crashed 3 times during checkout today. Using iPhone 14, latest iOS. Please fix.',
    ADD_HOURS(CURRENT_TIMESTAMP, -5)),
   ('TCK-1006', 'GID-1002', 'Loyalty points not credited',
-   'I redeemed 200 points last week but they are still showing as pending. Account: alex.mercer@example.com',
+   'I redeemed 200 points last week but they are still showing as pending. Account: priya.verma@example.in',
    ADD_HOURS(CURRENT_TIMESTAMP, -6)),
   ('TCK-1007', 'GID-1005', 'Positive feedback - great service',
    'Just wanted to say thanks for the amazing delivery today. Driver was polite, order was perfect, and arrived in 12 minutes. Will definitely recommend to friends!',
    ADD_HOURS(CURRENT_TIMESTAMP, -8)),
   ('TCK-1008', 'GID-1010', 'Charged twice for one order',
-   'My card was charged twice for order #ORD-88492. Total should be €42 but I was charged €84. Need immediate refund.',
+   'My card was charged twice for order #ORD-88492. Total should be ₹420 but I was charged ₹840. Need immediate refund.',
    ADD_HOURS(CURRENT_TIMESTAMP, -12));
 
 -- Orders (20 realistic orders across customers and stores)
 INSERT INTO PULSECART.orders VALUES
-  ('ORD-1001', 'GID-1001', 'STORE-BER-01', 'app', 'fulfilled', 28.50, 0.00, 28.50, ADD_DAYS(CURRENT_TIMESTAMP, -10), ADD_DAYS(CURRENT_TIMESTAMP, -10)),
-  ('ORD-1002', 'GID-1002', 'STORE-HAM-01', 'app', 'fulfilled', 64.20, 5.00, 59.20, ADD_DAYS(CURRENT_TIMESTAMP, -8), ADD_DAYS(CURRENT_TIMESTAMP, -8)),
-  ('ORD-1003', 'GID-1003', 'STORE-BER-01', 'web', 'fulfilled', 22.00, 15.00, 7.00, ADD_DAYS(CURRENT_TIMESTAMP, -7), ADD_DAYS(CURRENT_TIMESTAMP, -7)),
-  ('ORD-1004', 'GID-1004', 'STORE-HAM-01', 'app', 'fulfilled', 38.90, 0.00, 38.90, ADD_DAYS(CURRENT_TIMESTAMP, -6), ADD_DAYS(CURRENT_TIMESTAMP, -6)),
-  ('ORD-1005', 'GID-1005', 'STORE-BER-01', 'app', 'fulfilled', 31.50, 0.00, 31.50, ADD_DAYS(CURRENT_TIMESTAMP, -5), ADD_DAYS(CURRENT_TIMESTAMP, -5)),
-  ('ORD-1006', 'GID-1005', 'STORE-BER-01', 'app', 'returned',  24.80, 0.00, 24.80, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
-  ('ORD-1007', 'GID-1005', 'STORE-BER-01', 'app', 'returned',  19.20, 0.00, 19.20, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('ORD-1008', 'GID-1005', 'STORE-BER-01', 'app', 'returned',  18.00, 0.00, 18.00, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('ORD-1009', 'GID-1006', 'STORE-BER-01', 'app', 'fulfilled', 45.00, 0.00, 45.00, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
-  ('ORD-1010', 'GID-1007', 'STORE-HAM-01', 'app', 'fulfilled', 52.30, 0.00, 52.30, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('ORD-1011', 'GID-1008', 'STORE-MUC-01', 'app', 'fulfilled', 29.40, 0.00, 29.40, ADD_DAYS(CURRENT_TIMESTAMP, -6), ADD_DAYS(CURRENT_TIMESTAMP, -6)),
-  ('ORD-1012', 'GID-1008', 'STORE-MUC-01', 'app', 'returned',  22.50, 0.00, 22.50, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
-  ('ORD-1013', 'GID-1008', 'STORE-MUC-01', 'app', 'returned',  26.10, 0.00, 26.10, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('ORD-1014', 'GID-1009', 'STORE-MUC-01', 'app', 'fulfilled', 71.00, 10.00, 61.00, ADD_DAYS(CURRENT_TIMESTAMP, -5), ADD_DAYS(CURRENT_TIMESTAMP, -5)),
-  ('ORD-1015', 'GID-1010', 'STORE-HBL-01', 'app', 'fulfilled', 42.00, 0.00, 42.00, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('ORD-1016', 'GID-1001', 'STORE-BER-01', 'app', 'fulfilled', 34.00, 0.00, 34.00, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('ORD-1017', 'GID-1002', 'STORE-HAM-01', 'app', 'fulfilled', 85.50, 0.00, 85.50, ADD_DAYS(CURRENT_TIMESTAMP, -1), ADD_DAYS(CURRENT_TIMESTAMP, -1)),
-  ('ORD-1018', 'GID-1006', 'STORE-BER-01', 'app', 'fulfilled', 39.00, 0.00, 39.00, ADD_HOURS(CURRENT_TIMESTAMP, -18), ADD_HOURS(CURRENT_TIMESTAMP, -18)),
-  ('ORD-1019', 'GID-1007', 'STORE-HAM-01', 'app', 'fulfilled', 31.00, 0.00, 31.00, ADD_HOURS(CURRENT_TIMESTAMP, -12), ADD_HOURS(CURRENT_TIMESTAMP, -12)),
-  ('ORD-1020', 'GID-1010', 'STORE-HBL-01', 'app', 'fulfilled', 42.00, 0.00, 42.00, ADD_HOURS(CURRENT_TIMESTAMP, -6), ADD_HOURS(CURRENT_TIMESTAMP, -6));
+  ('ORD-1001', 'GID-1001', 'STORE-BLR-01', 'app', 'fulfilled', 28.50, 0.00, 28.50, ADD_DAYS(CURRENT_TIMESTAMP, -10), ADD_DAYS(CURRENT_TIMESTAMP, -10)),
+  ('ORD-1002', 'GID-1002', 'STORE-BLR-02', 'app', 'fulfilled', 64.20, 5.00, 59.20, ADD_DAYS(CURRENT_TIMESTAMP, -8), ADD_DAYS(CURRENT_TIMESTAMP, -8)),
+  ('ORD-1003', 'GID-1003', 'STORE-BLR-01', 'web', 'fulfilled', 22.00, 15.00, 7.00, ADD_DAYS(CURRENT_TIMESTAMP, -7), ADD_DAYS(CURRENT_TIMESTAMP, -7)),
+  ('ORD-1004', 'GID-1004', 'STORE-BLR-02', 'app', 'fulfilled', 38.90, 0.00, 38.90, ADD_DAYS(CURRENT_TIMESTAMP, -6), ADD_DAYS(CURRENT_TIMESTAMP, -6)),
+  ('ORD-1005', 'GID-1005', 'STORE-BLR-01', 'app', 'fulfilled', 31.50, 0.00, 31.50, ADD_DAYS(CURRENT_TIMESTAMP, -5), ADD_DAYS(CURRENT_TIMESTAMP, -5)),
+  ('ORD-1006', 'GID-1005', 'STORE-BLR-01', 'app', 'returned',  24.80, 0.00, 24.80, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
+  ('ORD-1007', 'GID-1005', 'STORE-BLR-01', 'app', 'returned',  19.20, 0.00, 19.20, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('ORD-1008', 'GID-1005', 'STORE-BLR-01', 'app', 'returned',  18.00, 0.00, 18.00, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('ORD-1009', 'GID-1006', 'STORE-BLR-01', 'app', 'fulfilled', 45.00, 0.00, 45.00, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
+  ('ORD-1010', 'GID-1007', 'STORE-BLR-02', 'app', 'fulfilled', 52.30, 0.00, 52.30, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('ORD-1011', 'GID-1008', 'STORE-BLR-03', 'app', 'fulfilled', 29.40, 0.00, 29.40, ADD_DAYS(CURRENT_TIMESTAMP, -6), ADD_DAYS(CURRENT_TIMESTAMP, -6)),
+  ('ORD-1012', 'GID-1008', 'STORE-BLR-03', 'app', 'returned',  22.50, 0.00, 22.50, ADD_DAYS(CURRENT_TIMESTAMP, -4), ADD_DAYS(CURRENT_TIMESTAMP, -4)),
+  ('ORD-1013', 'GID-1008', 'STORE-BLR-03', 'app', 'returned',  26.10, 0.00, 26.10, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('ORD-1014', 'GID-1009', 'STORE-BLR-03', 'app', 'fulfilled', 71.00, 10.00, 61.00, ADD_DAYS(CURRENT_TIMESTAMP, -5), ADD_DAYS(CURRENT_TIMESTAMP, -5)),
+  ('ORD-1015', 'GID-1010', 'STORE-BLR-04', 'app', 'fulfilled', 42.00, 0.00, 42.00, ADD_DAYS(CURRENT_TIMESTAMP, -3), ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('ORD-1016', 'GID-1001', 'STORE-BLR-01', 'app', 'fulfilled', 34.00, 0.00, 34.00, ADD_DAYS(CURRENT_TIMESTAMP, -2), ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('ORD-1017', 'GID-1002', 'STORE-BLR-02', 'app', 'fulfilled', 85.50, 0.00, 85.50, ADD_DAYS(CURRENT_TIMESTAMP, -1), ADD_DAYS(CURRENT_TIMESTAMP, -1)),
+  ('ORD-1018', 'GID-1006', 'STORE-BLR-01', 'app', 'fulfilled', 39.00, 0.00, 39.00, ADD_HOURS(CURRENT_TIMESTAMP, -18), ADD_HOURS(CURRENT_TIMESTAMP, -18)),
+  ('ORD-1019', 'GID-1007', 'STORE-BLR-02', 'app', 'fulfilled', 31.00, 0.00, 31.00, ADD_HOURS(CURRENT_TIMESTAMP, -12), ADD_HOURS(CURRENT_TIMESTAMP, -12)),
+  ('ORD-1020', 'GID-1010', 'STORE-BLR-04', 'app', 'fulfilled', 42.00, 0.00, 42.00, ADD_HOURS(CURRENT_TIMESTAMP, -6), ADD_HOURS(CURRENT_TIMESTAMP, -6));
 
 -- Order Items
 INSERT INTO PULSECART.order_items VALUES
@@ -425,14 +425,14 @@ INSERT INTO PULSECART.order_items VALUES
 
 -- Return Events (8 returns concentrated: GID-1005 returns abuser, GID-1008 returns abuser, AV-006 toxic SKU)
 INSERT INTO PULSECART.return_events VALUES
-  ('RET-001', 'GID-1005', 'ORD-1005', 'AV-006', 'STORE-BER-01', 'quality',       4.76, 8.26,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -5)),
-  ('RET-002', 'GID-1005', 'ORD-1006', 'AV-006', 'STORE-BER-01', 'quality',       3.57, 7.07,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -4)),
-  ('RET-003', 'GID-1005', 'ORD-1007', 'MK-001', 'STORE-BER-01', 'expired',       5.96, 9.46,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
-  ('RET-004', 'GID-1005', 'ORD-1008', 'EG-003', 'STORE-BER-01', 'damaged',       4.98, 8.48,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('RET-005', 'GID-1008', 'ORD-1011', 'AV-006', 'STORE-MUC-01', 'quality',       4.76, 8.26,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -6)),
-  ('RET-006', 'GID-1008', 'ORD-1012', 'AV-006', 'STORE-MUC-01', 'quality',       2.38, 5.88,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -4)),
-  ('RET-007', 'GID-1008', 'ORD-1013', 'EG-003', 'STORE-MUC-01', 'damaged',       4.98, 8.48,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
-  ('RET-008', 'GID-1001', 'ORD-1001', 'BR-002', 'STORE-BER-01', 'wrong_item',    2.29, 5.79,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -9));
+  ('RET-001', 'GID-1005', 'ORD-1005', 'AV-006', 'STORE-BLR-01', 'quality',       4.76, 8.26,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -5)),
+  ('RET-002', 'GID-1005', 'ORD-1006', 'AV-006', 'STORE-BLR-01', 'quality',       3.57, 7.07,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -4)),
+  ('RET-003', 'GID-1005', 'ORD-1007', 'MK-001', 'STORE-BLR-01', 'expired',       5.96, 9.46,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -3)),
+  ('RET-004', 'GID-1005', 'ORD-1008', 'EG-003', 'STORE-BLR-01', 'damaged',       4.98, 8.48,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('RET-005', 'GID-1008', 'ORD-1011', 'AV-006', 'STORE-BLR-03', 'quality',       4.76, 8.26,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -6)),
+  ('RET-006', 'GID-1008', 'ORD-1012', 'AV-006', 'STORE-BLR-03', 'quality',       2.38, 5.88,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -4)),
+  ('RET-007', 'GID-1008', 'ORD-1013', 'EG-003', 'STORE-BLR-03', 'damaged',       4.98, 8.48,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -2)),
+  ('RET-008', 'GID-1001', 'ORD-1001', 'BR-002', 'STORE-BLR-01', 'wrong_item',    2.29, 5.79,  2.50, 1.00, ADD_DAYS(CURRENT_TIMESTAMP, -9));
 
 -- Promo Codes
 INSERT INTO PULSECART.promo_code VALUES
@@ -443,21 +443,21 @@ INSERT INTO PULSECART.promo_code VALUES
 
 -- Fraud Events (15 events covering past 24h)
 INSERT INTO PULSECART.fraud_event (fraud_id, attempted_at, burner_email, attempted_promo_code, matched_golden_id, match_method, match_score, block_reason, "BLOCKED") VALUES
-  ('FR-001', ADD_HOURS(CURRENT_TIMESTAMP, -1),  'sarah.connor+spam@gmail.com', '$15OFF', 'GID-1001', 'address_similarity', 0.92, 'Email alias matches existing customer GID-1001', TRUE),
+  ('FR-001', ADD_HOURS(CURRENT_TIMESTAMP, -1),  'sarah.connor+spam@gmail.com', '$15OFF', 'GID-1001', 'address_similarity', 0.92, 'Email alias matches existing customer GID-1001 in Bengaluru', TRUE),
   ('FR-002', ADD_HOURS(CURRENT_TIMESTAMP, -2),  'alex.mercer1@example.com',   '$15OFF', 'GID-1002', 'levenshtein_email',  0.94, 'Email Levenshtein distance 1 from existing customer', TRUE),
   ('FR-003', ADD_HOURS(CURRENT_TIMESTAMP, -3),  'sarah.c0nor@example.com',    '$10SAVE','GID-1001', 'levenshtein_email',  0.87, 'Near-miss email match', TRUE),
   ('FR-004', ADD_HOURS(CURRENT_TIMESTAMP, -4),  'fake.user1@example.com',     '$15OFF', NULL,       'suspected_burner',   0.45, 'Multiple suspicious burner signals', TRUE),
-  ('FR-005', ADD_HOURS(CURRENT_TIMESTAMP, -5),  'j.doe+promo@example.com',    '$15OFF', 'GID-1005', 'address_similarity', 0.91, 'Address matches existing customer GID-1005', TRUE),
+  ('FR-005', ADD_HOURS(CURRENT_TIMESTAMP, -5),  'j.doe+promo@example.com',    '$15OFF', 'GID-1005', 'address_similarity', 0.91, 'Address matches existing customer GID-1005 in Bengaluru', TRUE),
   ('FR-006', ADD_HOURS(CURRENT_TIMESTAMP, -6),  'sarah.connor2@gmail.com',    '$15OFF', 'GID-1001', 'levenshtein_email',  0.90, 'Repetitive promo abuse on linked golden ID', TRUE),
   ('FR-007', ADD_HOURS(CURRENT_TIMESTAMP, -8),  'alex.mercer+vip@gmail.com',  'VIP25',  'GID-1002', 'address_similarity', 0.93, 'Address linked to VIP order already claimed', TRUE),
   ('FR-008', ADD_HOURS(CURRENT_TIMESTAMP, -10), 'noah.patel1@example.com',    '$10SAVE','GID-1008', 'levenshtein_email',  0.89, 'Near-miss email with active return dispute', TRUE),
   ('FR-009', ADD_HOURS(CURRENT_TIMESTAMP, -12), 'burner.phone@temp.com',      'WELCOME5',NULL,     'suspected_burner',   0.50, 'Burner domain detected', TRUE),
-  ('FR-010', ADD_HOURS(CURRENT_TIMESTAMP, -14), 'maya.sharma+1@example.com',  '$15OFF', 'GID-1006', 'address_similarity', 0.95, 'Same physical apartment detected', TRUE),
+  ('FR-010', ADD_HOURS(CURRENT_TIMESTAMP, -14), 'maya.sharma+1@example.com',  '$15OFF', 'GID-1006', 'address_similarity', 0.95, 'Same physical apartment detected in Bengaluru', TRUE),
   ('FR-011', ADD_HOURS(CURRENT_TIMESTAMP, -16), 'liam.chen.promo@gmail.com',  '$15OFF', 'GID-1007', 'levenshtein_email',  0.88, 'Duplicate new-user promotion attempted', TRUE),
   ('FR-012', ADD_HOURS(CURRENT_TIMESTAMP, -18), 'lucas.silva99@example.com',  '$10SAVE','GID-1010', 'levenshtein_email',  0.91, 'Pattern match against existing customer', TRUE),
   ('FR-013', ADD_HOURS(CURRENT_TIMESTAMP, -20), 'throwaway123@dispostable.com','$15OFF',NULL,       'suspected_burner',   0.60, 'Disposable inbox provider', TRUE),
   ('FR-014', ADD_HOURS(CURRENT_TIMESTAMP, -22), 'sarah.connor+extra@gmail.com','$15OFF','GID-1001', 'address_similarity', 0.96, 'Address similarity threshold exceeded (>0.85)', TRUE),
-  ('FR-015', ADD_HOURS(CURRENT_TIMESTAMP, -23), 'john.doe.fake@mail.com',     '$10SAVE','GID-1005', 'address_similarity', 0.89, 'Address matched GID-1005 history', TRUE);
+  ('FR-015', ADD_HOURS(CURRENT_TIMESTAMP, -23), 'john.doe.fake@mail.com',     '$10SAVE','GID-1005', 'address_similarity', 0.89, 'Address matched GID-1005 history in Bengaluru', TRUE);
 
 -- Pipeline Events (120 rows across 5 sources for the last 24h)
 INSERT INTO PULSECART.pipeline_event (event_id, source_system, event_type, rows_ingested, processed_at, latency_ms)

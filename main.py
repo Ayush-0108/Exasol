@@ -97,9 +97,12 @@ class ApiResponse(BaseModel):
     error: Optional[str] = None
 
 
+DEFAULT_TEST_ADDRESS = "Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095"
+
+
 class CheckoutRequest(BaseModel):
-    email: str = Field(..., example="sarah.connor+spam@gmail.com")
-    address: str = Field(..., min_length=5, max_length=1000, example="Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477")
+    email: str = Field(..., example="aarav.sharma+spam@gmail.com")
+    address: str = Field(DEFAULT_TEST_ADDRESS, min_length=5, max_length=1000, example=DEFAULT_TEST_ADDRESS)
     promo_code: Optional[str] = Field(None, example="$15OFF")
 
 
@@ -112,7 +115,7 @@ class TicketCreateRequest(BaseModel):
 
 
 class ReorderRequest(BaseModel):
-    store_id: str = Field(..., example="STORE-BER-01")
+    store_id: str = Field(..., example="STORE-BLR-01")
     sku: str = Field(..., example="MK-001")
     quantity: int = Field(..., gt=0, example=25)
 
@@ -258,6 +261,105 @@ def evaluate_checkout(payload: CheckoutRequest) -> Dict[str, Any]:
         "matched_address": best_match_addr,
         "golden_id": golden_id,
     }
+
+
+@app.get("/api/v1/identity/customer/{golden_id}", tags=["Module 1: Fraud Prevention"])
+def get_customer_identity(golden_id: str) -> Dict[str, Any]:
+    """Retrieve golden record and linked profile for a customer."""
+    cust_sql = """
+        SELECT golden_id, customer_id, email, phone, name, city, ltv, churn_risk, 
+               churn_label, status, fraud_score, created_at, updated_at
+        FROM PULSECART.customer_golden_id
+        WHERE golden_id = :gid OR customer_id = :gid
+    """
+    rows = database.execute_query(cust_sql, {"gid": golden_id})
+    if not rows:
+        raise HTTPException(status_code=404, detail=f"Customer golden ID '{golden_id}' not found")
+    
+    cust = _serialize_row(rows[0])
+    
+    # Linked addresses
+    addr_sql = """
+        SELECT address_id, address_text, created_at
+        FROM PULSECART.customer_address_history
+        WHERE golden_id = :gid
+        ORDER BY created_at DESC
+    """
+    addr_rows = database.execute_query(addr_sql, {"gid": rows[0]["golden_id"]})
+    cust["addresses"] = [
+        {
+            "address_id": r["address_id"],
+            "street": r["address_text"],
+            "city": cust.get("city", "Bengaluru"),
+            "created_at": r["created_at"].isoformat() if hasattr(r["created_at"], "isoformat") else str(r["created_at"]),
+        }
+        for r in addr_rows
+    ]
+    
+    # Linked orders
+    order_sql = """
+        SELECT order_id, store_id, total, status, created_at
+        FROM PULSECART.orders
+        WHERE golden_id = :gid
+        ORDER BY created_at DESC
+        LIMIT 10
+    """
+    order_rows = database.execute_query(order_sql, {"gid": rows[0]["golden_id"]})
+    cust["orders"] = [_serialize_row(r) for r in order_rows]
+    
+    # Linked tickets
+    ticket_sql = """
+        SELECT ticket_id, subject, churn_risk_score, llm_analyzed, created_at
+        FROM PULSECART.support_tickets
+        WHERE golden_id = :gid
+        ORDER BY created_at DESC
+        LIMIT 5
+    """
+    ticket_rows = database.execute_query(ticket_sql, {"gid": rows[0]["golden_id"]})
+    cust["tickets"] = [_serialize_row(r) for r in ticket_rows]
+    
+    # Identity confidence and resolution status
+    f_score = float(cust.get("fraud_score", 0.0) or 0.0)
+    cust["identity_confidence"] = round(1.0 - f_score, 2)
+    if f_score > 0.5:
+        cust["resolution_status"] = "SUSPECTED_ALIAS"
+    elif len(cust["addresses"]) > 1:
+        cust["resolution_status"] = "MULTI_ADDRESS_IDENTITY"
+    else:
+        cust["resolution_status"] = "VERIFIED_SINGLE"
+        
+    res = {"ok": True, "data": cust}
+    res.update(cust)
+    return res
+
+
+@app.get("/api/v1/fraud/log", tags=["Module 1: Fraud Prevention"])
+def get_fraud_log(limit: int = 50) -> Dict[str, Any]:
+    """Retrieve recent fraud attempts and evaluations."""
+    sql = """
+        SELECT fraud_id, attempted_at, burner_email, burner_phone, 
+               attempted_promo_code, matched_golden_id, match_method, 
+               match_score, block_reason, "BLOCKED" as blocked
+        FROM PULSECART.fraud_event
+        ORDER BY attempted_at DESC
+        LIMIT :limit
+    """
+    rows = database.execute_query(sql, {"limit": limit})
+    data = []
+    for r in rows:
+        serialized = _serialize_row(r)
+        data.append({
+            "id": serialized["fraud_id"],
+            "timestamp": serialized["attempted_at"],
+            "burner_email": serialized["burner_email"],
+            "promo_code": serialized["attempted_promo_code"],
+            "matched_golden_id": serialized["matched_golden_id"],
+            "match_method": serialized["match_method"],
+            "match_score": serialized["match_score"],
+            "reason": serialized["block_reason"],
+            "blocked": serialized["blocked"],
+        })
+    return {"ok": True, "data": data}
 
 
 # ============================================================================

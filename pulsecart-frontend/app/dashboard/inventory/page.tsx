@@ -92,20 +92,20 @@ export default function InventoryRadarPage() {
 
   // Stores fallback if API empty
   const stores = storesData && storesData.length > 0 ? storesData : [
-    { store_id: "DS-01", name: "Mitte Hub 01", city: "Berlin", zone: "Zone A · Urban Core", health_score: 78, total_skus: 420, critical_count: 5, warning_count: 8, healthy_count: 407 },
-    { store_id: "DS-02", name: "Kreuzberg Hub 02", city: "Berlin", zone: "Zone B · High Density", health_score: 82, total_skus: 395, critical_count: 3, warning_count: 6, healthy_count: 386 },
-    { store_id: "DS-03", name: "Prenzlauer Berg 03", city: "Berlin", zone: "Zone C · Residential", health_score: 91, total_skus: 410, critical_count: 1, warning_count: 4, healthy_count: 405 },
-    { store_id: "DS-04", name: "Charlottenburg 04", city: "Berlin", zone: "Zone D · West Corridor", health_score: 85, total_skus: 380, critical_count: 2, warning_count: 5, healthy_count: 373 },
+    { store_id: "STORE-BLR-01", name: "Koramangala Dark Store", city: "Bengaluru", zone: "Bengaluru Zone A — Koramangala", health_score: 78, total_skus: 420, critical_count: 5, warning_count: 8, healthy_count: 407 },
+    { store_id: "STORE-BLR-02", name: "Indiranagar Dark Store", city: "Bengaluru", zone: "Bengaluru Zone B — Indiranagar", health_score: 82, total_skus: 395, critical_count: 3, warning_count: 6, healthy_count: 386 },
+    { store_id: "STORE-BLR-03", name: "HSR Layout Dark Store", city: "Bengaluru", zone: "Bengaluru Zone C — HSR Layout", health_score: 91, total_skus: 410, critical_count: 1, warning_count: 4, healthy_count: 405 },
+    { store_id: "STORE-BLR-04", name: "Whitefield Dark Store", city: "Bengaluru", zone: "Bengaluru Zone D — Whitefield", health_score: 85, total_skus: 380, critical_count: 2, warning_count: 5, healthy_count: 373 },
   ]
 
   // Warnings fallback if API empty
   const warnings = warningsData && warningsData.length > 0 ? warningsData : [
-    { store_id: "DS-01", store_name: "Mitte Hub 01", store_city: "Berlin", sku: "OAT-MILK-1L", sku_name: "Oat Milk Barista Edition 1L", category: "Dairy & Alt", current_stock: 4, reorder_point: 20, predicted_demand_6h: 18, predicted_demand_24h: 54, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 158, estimated_runout_hours: 1.3 },
-    { store_id: "DS-01", store_name: "Mitte Hub 01", store_city: "Berlin", sku: "AVO-HASS-2PK", sku_name: "Organic Hass Avocados 2pk", category: "Produce", current_stock: 2, reorder_point: 15, predicted_demand_6h: 14, predicted_demand_24h: 40, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 118, estimated_runout_hours: 0.9 },
-    { store_id: "DS-02", store_name: "Kreuzberg Hub 02", store_city: "Berlin", sku: "BREAD-SOUR-500G", sku_name: "Artisan Sourdough Loaf 500g", category: "Bakery", current_stock: 6, reorder_point: 25, predicted_demand_6h: 22, predicted_demand_24h: 60, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 174, estimated_runout_hours: 1.6 },
-    { store_id: "DS-01", store_name: "Mitte Hub 01", store_city: "Berlin", sku: "EGGS-FREE-10PK", sku_name: "Free Range Eggs 10pk", category: "Dairy & Alt", current_stock: 5, reorder_point: 30, predicted_demand_6h: 24, predicted_demand_24h: 70, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 205, estimated_runout_hours: 1.25 },
-    { store_id: "DS-03", store_name: "Prenzlauer Berg 03", store_city: "Berlin", sku: "BANANA-ORG-1KG", sku_name: "Organic Fairtrade Bananas 1kg", category: "Produce", current_stock: 8, reorder_point: 20, predicted_demand_6h: 19, predicted_demand_24h: 48, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 136, estimated_runout_hours: 2.5 },
-    { store_id: "DS-04", store_name: "Charlottenburg 04", store_city: "Berlin", sku: "SPARKLING-WATER-6PK", sku_name: "Mineral Sparkling Water 6x500ml", category: "Beverages", current_stock: 12, reorder_point: 20, predicted_demand_6h: 10, predicted_demand_24h: 30, stockout_severity: "WARNING" as const, recommended_reorder_qty: 78, estimated_runout_hours: 7.2 },
+    { store_id: "STORE-BLR-01", store_name: "Koramangala Dark Store", store_city: "Bengaluru", sku: "MK-001", sku_name: "2% Milk 1L", category: "Dairy", current_stock: 4, reorder_point: 10, predicted_demand_6h: 18, predicted_demand_24h: 54, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 158, estimated_runout_hours: 1.3 },
+    { store_id: "STORE-BLR-01", store_name: "Koramangala Dark Store", store_city: "Bengaluru", sku: "AV-006", sku_name: "Hass Avocado", category: "Produce", current_stock: 2, reorder_point: 10, predicted_demand_6h: 14, predicted_demand_24h: 40, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 118, estimated_runout_hours: 0.9 },
+    { store_id: "STORE-BLR-02", store_name: "Indiranagar Dark Store", store_city: "Bengaluru", sku: "BR-002", sku_name: "Whole Wheat Bread", category: "Bakery", current_stock: 6, reorder_point: 10, predicted_demand_6h: 22, predicted_demand_24h: 60, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 174, estimated_runout_hours: 1.6 },
+    { store_id: "STORE-BLR-01", store_name: "Koramangala Dark Store", store_city: "Bengaluru", sku: "EG-003", sku_name: "Free-Range Eggs (6)", category: "Dairy", current_stock: 5, reorder_point: 10, predicted_demand_6h: 24, predicted_demand_24h: 70, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 205, estimated_runout_hours: 1.25 },
+    { store_id: "STORE-BLR-03", store_name: "HSR Layout Dark Store", store_city: "Bengaluru", sku: "BG-005", sku_name: "Bananas (1kg)", category: "Produce", current_stock: 8, reorder_point: 10, predicted_demand_6h: 19, predicted_demand_24h: 48, stockout_severity: "CRITICAL" as const, recommended_reorder_qty: 136, estimated_runout_hours: 2.5 },
+    { store_id: "STORE-BLR-04", store_name: "Whitefield Dark Store", store_city: "Bengaluru", sku: "BV-004", sku_name: "Sparkling Water 6pk", category: "Beverages", current_stock: 12, reorder_point: 10, predicted_demand_6h: 10, predicted_demand_24h: 30, stockout_severity: "WARNING" as const, recommended_reorder_qty: 78, estimated_runout_hours: 7.2 },
   ]
 
   const filteredWarnings =
