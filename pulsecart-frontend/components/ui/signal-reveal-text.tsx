@@ -30,7 +30,7 @@ function SignalRevealText({
   ...props
 }: SignalRevealTextProps) {
   const prefersReducedMotion = useReducedMotion();
-  const duration = Math.min(Math.max(speed, 650), 1800);
+  const duration = Math.min(Math.max(speed, 650), 3000);
   const words = text.trim().split(/\s+/);
   const wordStagger =
     words.length > 1 ? Math.min(80, 480 / (words.length - 1)) : 0;
@@ -39,7 +39,7 @@ function SignalRevealText({
     ...style,
     "--signal-accent": accent,
   } as SignalRevealStyle;
-  const loopDuration = (duration * 3.1) / 1000;
+  const loopDuration = (duration * 4.4) / 1000;
 
   return (
     <Component
@@ -60,14 +60,14 @@ function SignalRevealText({
               animate={
                 prefersReducedMotion
                   ? { opacity: 1, y: 0 }
-                  : { opacity: [0, 1, 1, 0], y: ["0.2em", 0, 0, "-0.08em"] }
+                  : { opacity: [0, 1, 1, 0], y: ["0.15em", 0, 0, "-0.04em"] }
               }
               transition={{
                 delay: (startDelay + index * wordStagger) / 1000,
                 duration: prefersReducedMotion ? 0 : loopDuration,
-                ease: [0.22, 1, 0.36, 1],
+                ease: ["easeOut", "linear", "easeInOut"],
                 repeat: prefersReducedMotion ? 0 : Infinity,
-                times: [0, 0.16, 0.8, 1],
+                times: [0, 0.12, 0.52, 1],
               }}
             >
               {word}
