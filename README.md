@@ -4,7 +4,7 @@
 
 PulseCart is an analytical platform for quick-commerce operations. It combines Exasol SQL analytics, a FastAPI service layer, and Groq-hosted language models to identify promotion abuse, forecast inventory risks, prioritize customer churn, and analyze return-related margin losses across dense urban dark-store networks.
 
-Developed for the Exasol Hackathon, Track 02: Customers, Channels & Demand.
+![PulseCart Platform](assets/pulsecart-hero.png)
 
 ---
 
