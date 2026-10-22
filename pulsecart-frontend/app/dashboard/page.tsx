@@ -68,9 +68,6 @@ export default function CommandCenterPage() {
             Command Center
           </h1>
         </div>
-        <div className="text-xs font-mono text-zinc-400">
-          Engine: <span className="text-zinc-200">Exasol Columnar In-Memory</span>
-        </div>
       </div>
 
       {/* ── Top Row: ROI Metrics (Asymmetric 60/40 Split) ── */}

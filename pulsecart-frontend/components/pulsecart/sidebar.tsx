@@ -87,9 +87,6 @@ export function SidebarContent({ onItemClick }: SidebarContentProps) {
             <span className="font-semibold text-lg tracking-tight text-zinc-50">
               Pulse<span className="text-emerald-400">Cart</span>
             </span>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded">
-              Operator
-            </span>
           </Link>
         </div>
 
