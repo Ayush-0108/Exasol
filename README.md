@@ -8,6 +8,17 @@ PulseCart is an analytical platform for quick-commerce operations. It combines E
 
 ---
 
+## Problem Statement
+
+Quick-commerce operators in India — Blinkit, Zepto, Swiggy Instamart, and the rest — promise 10-to-30-minute delivery, but they lose **8 to 12 percent of revenue** to four silent killers that hide inside their own data:
+
+- **Fragmented customer identity:** The same shopper exists as four different identities across four different systems.
+- **Reactive inventory management:** Stockouts are discovered only after an order fails.
+- **Unread churn signals:** Churn signals sit unread inside free-text support tickets.
+- **Misclassified returns:** Returns are tracked as logistics events, not as profit-eroding behaviors tied to specific customers.
+
+---
+
 ## Overview
 
 Quick-commerce businesses operate with razor-thin margins (2–5%) and face operational risks across customer identity, inventory, customer support, and serial returns. PulseCart brings these signals into a single unified platform backed by an Exasol analytical columnar database.
