@@ -101,7 +101,7 @@ Exasol provides the in-memory columnar compute layer. FastAPI exposes operationa
 
 ```text
 PulseCart/
-├── pulsecart-frontend/     # Next.js B2B operator dashboard
+├── frontend/               # Next.js B2B operator dashboard
 │   ├── app/                # App router (Landing, Login, Dashboard routes)
 │   ├── components/         # Reusable UI cards, tables, pipeline bars
 │   └── lib/                # API client, types, and INR currency formatting
@@ -179,7 +179,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ### 3. Frontend Setup
 ```bash
-cd pulsecart-frontend
+cd frontend
 npm install
 npm run dev
 ```
@@ -247,7 +247,7 @@ gunicorn app.main:app \
 Build the optimized static assets and server bundles for production:
 
 ```bash
-cd pulsecart-frontend
+cd frontend
 
 # Clean install and production build
 npm ci
@@ -259,7 +259,7 @@ npm run start -- -p 3000
 
 > **Cloud Hosting (e.g. Vercel, Netlify, Render):**
 > - **Framework Preset**: Next.js
-> - **Root Directory**: `pulsecart-frontend`
+> - **Root Directory**: `frontend`
 > - **Build Command**: `npm run build`
 > - **Environment Variable**: `NEXT_PUBLIC_API_BASE` pointing to your deployed FastAPI backend URL (e.g. `https://api.pulsecart.in`).
 
