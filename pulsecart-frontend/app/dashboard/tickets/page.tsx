@@ -23,7 +23,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { usePolling } from "@/lib/use-polling"
 import { apiGet, apiPost } from "@/lib/api"
 import { SupportTicket, TicketStats } from "@/lib/types"
-import { formatEur, formatRelativeTime, formatPercent } from "@/lib/format"
+import { formatEur, formatPercent } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 import { cn } from "@/lib/utils"
 
 export default function CustomerSuccessPage() {
@@ -399,7 +400,7 @@ export default function CustomerSuccessPage() {
                             {t.customer_name || t.golden_id}
                           </span>
                           <span className="text-[10px] text-zinc-400 shrink-0">
-                            {formatRelativeTime(t.created_at)}
+                            <RelativeTime date={t.created_at} />
                           </span>
                         </div>
 
@@ -457,7 +458,7 @@ export default function CustomerSuccessPage() {
                     Ticket ID: <strong className="text-zinc-200">{selectedTicket.ticket_id}</strong>
                   </span>
                   <span className="text-xs font-mono text-zinc-400">
-                    Received {formatRelativeTime(selectedTicket.created_at)}
+                    Received <RelativeTime date={selectedTicket.created_at} />
                   </span>
                 </div>
 
@@ -541,7 +542,7 @@ export default function CustomerSuccessPage() {
                       </h3>
                     </div>
                     <span className="text-[10px] font-mono text-zinc-400">
-                      Evaluated {formatRelativeTime(selectedTicket.analyzed_at)}
+                      Evaluated <RelativeTime date={selectedTicket.analyzed_at} />
                     </span>
                   </div>
 

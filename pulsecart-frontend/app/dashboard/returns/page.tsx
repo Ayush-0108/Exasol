@@ -40,7 +40,8 @@ import {
   ReturnsImpactSummary,
   CustomerReturnHistoryItem,
 } from "@/lib/types"
-import { formatEur, formatPercent, formatRelativeTime } from "@/lib/format"
+import { formatEur, formatPercent } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 import { cn } from "@/lib/utils"
 
 export default function MarginProtectionPage() {
@@ -542,7 +543,7 @@ export default function MarginProtectionPage() {
                         </div>
                         <div className="flex items-center justify-between text-[10px] text-zinc-400 pt-1 border-t border-zinc-800/60">
                           <span>Order: {item.order_id}</span>
-                          <time>{formatRelativeTime(item.created_at)}</time>
+                          <time><RelativeTime date={item.created_at} /></time>
                         </div>
                       </div>
                     ))}

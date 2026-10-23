@@ -26,7 +26,8 @@ import {
   FraudLogItem,
   FraudStats,
 } from "@/lib/types"
-import { formatEur, formatRelativeTime, formatPercent } from "@/lib/format"
+import { formatEur, formatPercent } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 import { cn } from "@/lib/utils"
 
 // Seed golden IDs present in Exasol database
@@ -365,7 +366,7 @@ export default function IdentityFraudPage() {
                       <span className="text-zinc-400">{ord.order_id}</span>
                       <span>{formatEur(ord.total)}</span>
                       <span className="text-[10px] text-emerald-400 uppercase">{ord.status}</span>
-                      <span className="text-zinc-400 text-[11px]" suppressHydrationWarning>{formatRelativeTime(ord.created_at)}</span>
+                      <span className="text-zinc-400 text-[11px]"><RelativeTime date={ord.created_at} /></span>
                     </div>
                   ))}
                 </div>
@@ -390,8 +391,8 @@ export default function IdentityFraudPage() {
               </div>
 
               <div className="flex items-center gap-3 text-xs font-mono">
-                <span className="text-zinc-400" suppressHydrationWarning>
-                  Updated {formatRelativeTime(fraudUpdated)}
+                <span className="text-zinc-400">
+                  Updated <RelativeTime date={fraudUpdated} />
                 </span>
                 <Button
                   type="button"
@@ -450,8 +451,8 @@ export default function IdentityFraudPage() {
 
                     return (
                       <tr key={log.id} className="hover:bg-zinc-900/60 transition-colors">
-                        <td className="py-3 px-3 text-zinc-400 whitespace-nowrap" suppressHydrationWarning>
-                          {formatRelativeTime(log.timestamp)}
+                        <td className="py-3 px-3 text-zinc-400 whitespace-nowrap">
+                          <RelativeTime date={log.timestamp} />
                         </td>
                         <td className="py-3 px-3 text-zinc-200 font-medium">
                           {log.burner_email}

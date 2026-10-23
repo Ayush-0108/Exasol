@@ -4,7 +4,7 @@ import React from "react"
 import { Pause, Play, RefreshCw, Activity } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PipelineHealth } from "@/lib/types"
-import { formatRelativeTime } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 
 interface PipelineBarsProps {
   data: PipelineHealth | null
@@ -51,8 +51,8 @@ export function PipelineBars({
 
         {/* Polling status & pause control */}
         <div className="flex items-center gap-3 text-xs font-mono">
-          <span className="text-zinc-400" suppressHydrationWarning>
-            Updated {formatRelativeTime(lastUpdated)}
+          <span className="text-zinc-400">
+            Updated <RelativeTime date={lastUpdated} />
           </span>
           <Button
             type="button"

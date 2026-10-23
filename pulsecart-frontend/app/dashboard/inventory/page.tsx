@@ -25,7 +25,7 @@ import {
 import { usePolling } from "@/lib/use-polling"
 import { apiGet, apiPost } from "@/lib/api"
 import { DarkStoreItem, StockoutWarning, StoreHeatmapItem } from "@/lib/types"
-import { formatRelativeTime } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 import { cn } from "@/lib/utils"
 
 export default function InventoryRadarPage() {
@@ -270,7 +270,7 @@ export default function InventoryRadarPage() {
 
           <div className="flex items-center gap-3 text-xs font-mono">
             <span className="text-zinc-400">
-              Updated {formatRelativeTime(warningsUpdated)}
+              Updated <RelativeTime date={warningsUpdated} />
             </span>
             <Button
               type="button"

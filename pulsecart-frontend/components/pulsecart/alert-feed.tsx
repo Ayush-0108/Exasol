@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { AlertItem } from "@/lib/types"
-import { formatRelativeTime } from "@/lib/format"
+import { RelativeTime } from "@/components/pulsecart/relative-time"
 import { cn } from "@/lib/utils"
 
 interface AlertFeedProps {
@@ -60,8 +60,8 @@ export function AlertFeed({
 
         {/* Status indicator & pause controls */}
         <div className="flex items-center gap-3 text-xs font-mono">
-          <span className="text-zinc-400" suppressHydrationWarning>
-            Updated {formatRelativeTime(lastUpdated)}
+          <span className="text-zinc-400">
+            Updated <RelativeTime date={lastUpdated} />
           </span>
           <Button
             type="button"
@@ -167,8 +167,8 @@ export function AlertFeed({
                         {alert.message}
                       </p>
                     </div>
-                    <time className="text-[11px] font-mono text-zinc-400 whitespace-nowrap shrink-0" suppressHydrationWarning>
-                      {formatRelativeTime(alert.timestamp)}
+                    <time className="text-[11px] font-mono text-zinc-400 whitespace-nowrap shrink-0">
+                      <RelativeTime date={alert.timestamp} />
                     </time>
                   </motion.div>
                 )
