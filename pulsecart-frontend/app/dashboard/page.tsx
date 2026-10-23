@@ -6,8 +6,8 @@ import { PipelineBars } from "@/components/pulsecart/pipeline-bars"
 import { AlertFeed } from "@/components/pulsecart/alert-feed"
 import { usePolling } from "@/lib/use-polling"
 import { apiGet } from "@/lib/api"
-import { ROIReport, PipelineHealth, AlertItem, SystemHealth } from "@/lib/types"
-import { formatEur, formatRelativeTime } from "@/lib/format"
+import { ROIReport, PipelineHealth, AlertItem } from "@/lib/types"
+import { formatEur } from "@/lib/format"
 
 export default function CommandCenterPage() {
   // 1. Polling ROI (30s)
@@ -45,13 +45,6 @@ export default function CommandCenterPage() {
     lastUpdated: alertsUpdated,
     refresh: refreshAlerts,
   } = usePolling<AlertItem[]>(fetchAlerts, 10000)
-
-  // 4. Polling System Health (30s)
-  const fetchSystem = useCallback(
-    () => apiGet<SystemHealth>("/api/v1/overview/system-health"),
-    []
-  )
-  const { data: systemData } = usePolling<SystemHealth>(fetchSystem, 30000)
 
   const alerts = alertsData || []
   const activeAlertsCount = alerts.filter((a) => a.severity === "critical" || a.severity === "warning").length
@@ -167,51 +160,6 @@ export default function CommandCenterPage() {
           onRefresh={refreshAlerts}
         />
       </section>
-
-      {/* ── Footer Strip: System Health (No Boxes) ── */}
-      <footer aria-label="System Health" className="pt-6 border-t border-zinc-850">
-        <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-zinc-400">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-            <span>
-              Database:{" "}
-              <strong className="text-zinc-200">
-                {systemData?.database ?? "Exasol Personal (In-Memory)"}
-              </strong>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-            <span>
-              LLM Service:{" "}
-              <strong className="text-zinc-200">
-                {systemData?.llm_service ?? "Groq (Llama 3.1 8B)"}
-              </strong>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-            <span>
-              Last pipeline event:{" "}
-              <strong className="text-zinc-200">
-                {formatRelativeTime(systemData?.last_pipeline_event)}
-              </strong>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-zinc-500" aria-hidden="true" />
-            <span>
-              Uptime:{" "}
-              <strong className="text-zinc-200">
-                {systemData ? `${Math.floor(systemData.uptime_seconds / 3600)}h ${Math.floor((systemData.uptime_seconds % 3600) / 60)}m` : "99.98%"}
-              </strong>
-            </span>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
