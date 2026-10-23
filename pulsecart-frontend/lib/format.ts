@@ -30,12 +30,12 @@ export function formatPercent(value: number | null | undefined, isRatio = false)
 
 export function formatRelativeTime(dateStringOrTimestamp: string | number | Date | null | undefined): string {
   if (!dateStringOrTimestamp) return 'just now'
-  if (typeof window === 'undefined') return 'recently'
   const date = typeof dateStringOrTimestamp === 'object' ? dateStringOrTimestamp : new Date(dateStringOrTimestamp)
+  if (isNaN(date.getTime())) return 'recently'
   const now = new Date()
   const diffSec = Math.floor((now.getTime() - date.getTime()) / 1000)
 
-  if (diffSec < 5) return 'just now'
+  if (diffSec < 0 || diffSec < 5) return 'just now'
   if (diffSec < 60) return `${diffSec}s ago`
   const diffMin = Math.floor(diffSec / 60)
   if (diffMin < 60) return `${diffMin}m ago`

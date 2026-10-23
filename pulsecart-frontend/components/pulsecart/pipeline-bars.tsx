@@ -51,7 +51,7 @@ export function PipelineBars({
 
         {/* Polling status & pause control */}
         <div className="flex items-center gap-3 text-xs font-mono">
-          <span className="text-zinc-400">
+          <span className="text-zinc-400" suppressHydrationWarning>
             Updated {formatRelativeTime(lastUpdated)}
           </span>
           <Button

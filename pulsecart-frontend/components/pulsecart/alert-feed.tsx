@@ -60,7 +60,7 @@ export function AlertFeed({
 
         {/* Status indicator & pause controls */}
         <div className="flex items-center gap-3 text-xs font-mono">
-          <span className="text-zinc-400">
+          <span className="text-zinc-400" suppressHydrationWarning>
             Updated {formatRelativeTime(lastUpdated)}
           </span>
           <Button
@@ -167,7 +167,7 @@ export function AlertFeed({
                         {alert.message}
                       </p>
                     </div>
-                    <time className="text-[11px] font-mono text-zinc-400 whitespace-nowrap shrink-0">
+                    <time className="text-[11px] font-mono text-zinc-400 whitespace-nowrap shrink-0" suppressHydrationWarning>
                       {formatRelativeTime(alert.timestamp)}
                     </time>
                   </motion.div>

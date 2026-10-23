@@ -365,7 +365,7 @@ export default function IdentityFraudPage() {
                       <span className="text-zinc-400">{ord.order_id}</span>
                       <span>{formatEur(ord.total)}</span>
                       <span className="text-[10px] text-emerald-400 uppercase">{ord.status}</span>
-                      <span className="text-zinc-400 text-[11px]">{formatRelativeTime(ord.created_at)}</span>
+                      <span className="text-zinc-400 text-[11px]" suppressHydrationWarning>{formatRelativeTime(ord.created_at)}</span>
                     </div>
                   ))}
                 </div>
@@ -390,7 +390,7 @@ export default function IdentityFraudPage() {
               </div>
 
               <div className="flex items-center gap-3 text-xs font-mono">
-                <span className="text-zinc-400">
+                <span className="text-zinc-400" suppressHydrationWarning>
                   Updated {formatRelativeTime(fraudUpdated)}
                 </span>
                 <Button
@@ -450,7 +450,7 @@ export default function IdentityFraudPage() {
 
                     return (
                       <tr key={log.id} className="hover:bg-zinc-900/60 transition-colors">
-                        <td className="py-3 px-3 text-zinc-400 whitespace-nowrap">
+                        <td className="py-3 px-3 text-zinc-400 whitespace-nowrap" suppressHydrationWarning>
                           {formatRelativeTime(log.timestamp)}
                         </td>
                         <td className="py-3 px-3 text-zinc-200 font-medium">
