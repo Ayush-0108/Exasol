@@ -17,9 +17,11 @@ PulseCart is an analytical platform for quick-commerce operations. It combines E
 
 ![PulseCart Platform](assets/pulsecart-hero.png)
 
+https://github.com/user-attachments/assets/622376d0-9553-43dd-965c-df0951b64c18
+
 <div align="center">
 
-🎬 **[Watch Demo Video](demo/demo-video-final.mp4)** &nbsp;&nbsp;|&nbsp;&nbsp; 📊 **[Download Pitch Deck (PPTX)](demo/PulseCart_Pitch_Deck.pptx)**
+📊 **[Download Pitch Deck (PPTX)](demo/PulseCart_Pitch_Deck.pptx)** &nbsp;&nbsp;|&nbsp;&nbsp; 🎬 **[Direct Video File (MP4)](demo/demo-video-final.mp4)**
 
 </div>
 
