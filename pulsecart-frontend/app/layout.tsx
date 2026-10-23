@@ -16,8 +16,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} dark`}>
-      <body className="font-sans antialiased bg-zinc-950 text-zinc-100 min-h-[100dvh] flex flex-col selection:bg-emerald-950 selection:text-emerald-300">
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body
+        className="font-sans antialiased bg-zinc-950 text-zinc-100 min-h-[100dvh] flex flex-col selection:bg-emerald-950 selection:text-emerald-300"
+        suppressHydrationWarning
+      >
         <TooltipProvider>
           {children}
           <Toaster position="bottom-right" richColors theme="dark" />
