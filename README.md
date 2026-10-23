@@ -192,6 +192,90 @@ python scripts/simulate.py
 
 ---
 
+## Deployment Guide
+
+### 1. Exasol Database (Docker Container)
+For server or cloud deployments without local Exasol Personal Edition, run Exasol as a standalone container:
+
+```bash
+docker run -d \
+  --name exasol-db \
+  -p 8563:8563 \
+  --privileged \
+  exasol/docker-db:latest
+
+# Wait for database startup, then initialize schema & Bengaluru dark-store records:
+python -c "
+from app import database
+with open('sql/init.sql', 'r', encoding='utf-8') as f:
+    sql = f.read()
+cleaned = '\n'.join([l for l in sql.splitlines() if not l.strip().startswith('--')])
+for s in cleaned.split(';'):
+    if s.strip(): database.execute_statement(s)
+print('Exasol database schema initialized!')
+"
+```
+
+### 2. Backend Production Service (FastAPI)
+Deploy the FastAPI analytical engine behind Gunicorn with multi-threaded Uvicorn workers:
+
+```bash
+# Install production requirements
+pip install -r requirements.txt gunicorn
+
+# Run multi-worker production server
+gunicorn app.main:app \
+  --workers 4 \
+  --worker-class uvicorn.workers.UvicornWorker \
+  --bind 0.0.0.0:8000 \
+  --access-logfile - \
+  --error-logfile -
+```
+
+#### Production Environment Variables
+| Variable | Required | Description | Default / Example |
+|---|:---:|---|---|
+| `EXASOL_DSN` | Yes | Exasol native WebSocket address & port | `127.0.0.1:8563` or `db.internal:8563` |
+| `EXASOL_USER` | Yes | Database username | `sys` |
+| `EXASOL_PASSWORD` | Yes | Exasol user password | `exasol` |
+| `EXASOL_SCHEMA` | No | Target analytics schema | `PULSECART` |
+| `GROQ_API_KEY` | Yes | Groq Cloud LPU API key for ticket analysis | `gsk_...` |
+| `GROQ_PRIMARY_MODEL` | No | Primary low-latency LLM | `openai/gpt-oss-20b` |
+| `GROQ_FALLBACK_MODEL` | No | Secondary fallback model | `qwen/qwen3.8-27b` |
+
+### 3. Frontend Production Build & Hosting (Next.js)
+Build the optimized static assets and server bundles for production:
+
+```bash
+cd pulsecart-frontend
+
+# Clean install and production build
+npm ci
+NEXT_PUBLIC_API_BASE=https://api.yourdomain.com npm run build
+
+# Start production server
+npm run start -- -p 3000
+```
+
+> **Cloud Hosting (e.g. Vercel, Netlify, Render):**
+> - **Framework Preset**: Next.js
+> - **Root Directory**: `pulsecart-frontend`
+> - **Build Command**: `npm run build`
+> - **Environment Variable**: `NEXT_PUBLIC_API_BASE` pointing to your deployed FastAPI backend URL (e.g. `https://api.pulsecart.in`).
+
+### 4. Post-Deployment Verification
+Run the automated 13-point test suite against the target deployment:
+
+```bash
+python scripts/run_acceptance.py
+```
+A successful deployment reports:
+```text
+ALL 13 ACCEPTANCE TESTS PASSED!
+```
+
+---
+
 ## Implementation Notes
 
 ### Address Matching and Deployment Portability
