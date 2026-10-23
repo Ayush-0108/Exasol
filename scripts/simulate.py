@@ -25,7 +25,13 @@ from datetime import datetime
 # Add project root to sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import execute_query, execute_statement
+if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+from app.database import execute_query, execute_statement
 
 CUSTOMERS = ['GID-1001', 'GID-1002', 'GID-1005', 'GID-1006', 'GID-1007', 'GID-1008', 'GID-1009', 'GID-1010']
 STORES = ['STORE-BLR-01', 'STORE-BLR-02', 'STORE-BLR-03', 'STORE-BLR-04']

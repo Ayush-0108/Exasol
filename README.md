@@ -19,7 +19,7 @@ PulseCart is an analytical platform for quick-commerce operations. It combines E
 
 <div align="center">
 
-🎬 **[Watch Demo Video](demo-video-final.mp4)** &nbsp;&nbsp;|&nbsp;&nbsp; 📊 **[Download Pitch Deck (PPTX)](PulseCart.pptx)**
+🎬 **[Watch Demo Video](demo/demo-video-final.mp4)** &nbsp;&nbsp;|&nbsp;&nbsp; 📊 **[Download Pitch Deck (PPTX)](demo/PulseCart_Pitch_Deck.pptx)**
 
 </div>
 
@@ -105,18 +105,22 @@ PulseCart/
 │   ├── app/                # App router (Landing, Login, Dashboard routes)
 │   ├── components/         # Reusable UI cards, tables, pipeline bars
 │   └── lib/                # API client, types, and INR currency formatting
+├── app/                    # Backend FastAPI package
+│   ├── __init__.py         # Python package marker
+│   ├── main.py             # FastAPI application and 20+ operational REST endpoints
+│   ├── database.py         # PyExasol connection management & credential resolution
+│   └── llm_service.py      # Groq LLM ticket analysis with resilient 3-tier fallback
+├── sql/                    # Analytical and transactional Exasol SQL
+│   ├── init.sql            # Exasol DDL schema and Bengaluru seed data
+│   └── exasol-views.sql    # Analytical views and Customer 360 materialization
+├── demo/                   # Video walkthrough and presentation deck
+│   ├── PulseCart_Pitch_Deck.pptx # Product vision and architectural deck
+│   └── demo-video-final.mp4      # Product demo walkthrough video
 ├── udf/
 │   └── fuzzy_match.sql     # Exasol Python UDF definition for in-database matching
 ├── scripts/
 │   ├── simulate.py         # Live quick-commerce activity simulator
 │   └── run_acceptance.py   # Automated 13-point end-to-end acceptance suite
-├── database.py             # PyExasol connection management & credential resolution
-├── main.py                 # FastAPI application and 20+ operational REST endpoints
-├── llm_service.py          # Groq LLM ticket analysis with resilient 3-tier fallback
-├── init.sql                # Exasol DDL schema and Bengaluru seed data
-├── exasol-views.sql        # Analytical views and Customer 360 materialization
-├── demo-video-final.mp4    # Product demo walkthrough video
-├── PulseCart.pptx          # Product vision and architectural deck
 ├── requirements.txt        # Python dependency manifest
 ├── .env.example            # Environment template
 └── LICENSE                 # MIT License
@@ -160,8 +164,8 @@ pip install -r requirements.txt
 
 # Seed the Exasol database
 python -c "
-import database
-with open('init.sql', 'r', encoding='utf-8') as f:
+from app import database
+with open('sql/init.sql', 'r', encoding='utf-8') as f:
     sql = f.read()
 cleaned = '\n'.join([l for l in sql.splitlines() if not l.strip().startswith('--')])
 for s in cleaned.split(';'):
@@ -170,7 +174,7 @@ print('Exasol database initialized!')
 "
 
 # Start the FastAPI server
-uvicorn main:app --host 0.0.0.0 --port 8000
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 ### 3. Frontend Setup

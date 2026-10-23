@@ -21,8 +21,8 @@ from fastapi import FastAPI, HTTPException, Query, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-import database
-from llm_service import classify_ticket
+from . import database
+from .llm_service import classify_ticket
 
 START_TIME = time.time()
 

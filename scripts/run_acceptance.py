@@ -9,10 +9,16 @@ import sys
 # Ensure root is in sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 from fastapi.testclient import TestClient
-from main import app
-import database
-from llm_service import classify_ticket
+from app.main import app
+from app import database
+from app.llm_service import classify_ticket
 
 print("=======================================================")
 print("PULSECART END-TO-END ACCEPTANCE SUITE")
@@ -21,7 +27,7 @@ print("=======================================================")
 results = {}
 
 # Test 1: grep -r 'gsk_' *.py returns ZERO matches
-py_files = [p for p in glob.glob("*.py") + glob.glob("*/*.py")]
+py_files = [p for p in glob.glob("*.py") + glob.glob("*/*.py") + glob.glob("*/*/*.py")]
 gsk_matches = []
 needle = "gsk" + "_"
 for p in py_files:
@@ -50,7 +56,8 @@ except Exception as e:
 
 # Test 4: init.sql succeeds on Exasol without UDF errors
 try:
-    with open("init.sql", "r", encoding="utf-8") as f:
+    init_sql_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "sql", "init.sql")
+    with open(init_sql_path, "r", encoding="utf-8") as f:
         sql = f.read()
     cleaned = "\n".join([l for l in sql.splitlines() if not l.strip().startswith("--")])
     stmts = [s.strip() for s in cleaned.split(";") if s.strip()]
@@ -88,8 +95,8 @@ results["9. GET /api/v1/returns/toxic-skus"] = (toxic_count >= 1, f"Toxic SKUs: 
 
 # Test 10: POST /api/v1/checkout promo abuse block
 r10 = client.post("/api/v1/checkout", json={
-    "email": "sarah.connor+spam@gmail.com",
-    "address": "Apt 4B, 742 Evergreen Terrace, Springfield, OR 97477",
+    "email": "aarav.sharma+spam@gmail.com",
+    "address": "Flat 402, Sunshine Apartments, 5th Block, Koramangala, Bengaluru 560095",
     "promo_code": "$15OFF"
 }).json()
 results["10. POST /api/v1/checkout (Promo Abuse)"] = (
