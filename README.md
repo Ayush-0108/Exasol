@@ -19,7 +19,7 @@ PulseCart is an analytical platform for quick-commerce operations. It combines E
 
 <div align="center">
 
-🎬 **[Watch Demo Video](demo-video-final.mp4)** &nbsp;&nbsp;|&nbsp;&nbsp; 📊 **[Download Pitch Deck (PPTX)](PulseCart_Pitch_Deck.pptx)**
+🎬 **[Watch Demo Video](demo-video-final.mp4)** &nbsp;&nbsp;|&nbsp;&nbsp; 📊 **[Download Pitch Deck (PPTX)](PulseCart.pptx)**
 
 </div>
 
@@ -116,7 +116,7 @@ PulseCart/
 ├── init.sql                # Exasol DDL schema and Bengaluru seed data
 ├── exasol-views.sql        # Analytical views and Customer 360 materialization
 ├── demo-video-final.mp4    # Product demo walkthrough video
-├── PulseCart_Pitch_Deck.pptx # Product vision and architectural deck
+├── PulseCart.pptx          # Product vision and architectural deck
 ├── requirements.txt        # Python dependency manifest
 ├── .env.example            # Environment template
 └── LICENSE                 # MIT License
