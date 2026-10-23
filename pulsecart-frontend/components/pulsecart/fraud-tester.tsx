@@ -216,7 +216,7 @@ export function FraudTester({ onEvaluationComplete }: FraudTesterProps) {
                         : "bg-emerald-950 border-emerald-800 text-emerald-300"
                     }`}
                   >
-                    Confidence: {(result.match_score * 100).toFixed(1)}%
+                    Confidence: {(Number(result.match_score ?? 0) * 100).toFixed(1)}%
                   </span>
                 )}
               </div>

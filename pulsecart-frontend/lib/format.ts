@@ -1,30 +1,33 @@
-export function formatEur(amount: number | null | undefined): string {
-  if (amount === null || amount === undefined || isNaN(amount)) return '₹0.00'
+export function formatEur(amount: number | string | null | undefined): string {
+  const num = typeof amount === 'string' ? parseFloat(amount) : amount
+  if (num === null || num === undefined || isNaN(num)) return '₹0.00'
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(amount)
+  }).format(num)
 }
 
-export function formatEurCompact(amount: number | null | undefined): string {
-  if (amount === null || amount === undefined || isNaN(amount)) return '₹0'
+export function formatEurCompact(amount: number | string | null | undefined): string {
+  const num = typeof amount === 'string' ? parseFloat(amount) : amount
+  if (num === null || num === undefined || isNaN(num)) return '₹0'
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
     notation: 'compact',
     maximumFractionDigits: 1,
-  }).format(amount)
+  }).format(num)
 }
 
 // Alias for explicit naming
 export const formatInr = formatEur
 export const formatInrCompact = formatEurCompact
 
-export function formatPercent(value: number | null | undefined, isRatio = false): string {
-  if (value === null || value === undefined || isNaN(value)) return '0.0%'
-  const numeric = isRatio ? value * 100 : value
+export function formatPercent(value: number | string | null | undefined, isRatio = false): string {
+  const num = typeof value === 'string' ? parseFloat(value) : value
+  if (num === null || num === undefined || isNaN(num)) return '0.0%'
+  const numeric = isRatio ? num * 100 : num
   return `${numeric.toFixed(1)}%`
 }
 

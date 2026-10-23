@@ -313,7 +313,7 @@ export default function IdentityFraudPage() {
                   <span
                     className={cn(
                       "text-lg font-bold block mt-0.5",
-                      customer.churn_risk > 0.6 ? "text-rose-400" : "text-zinc-200"
+                      Number(customer.churn_risk ?? 0) > 0.6 ? "text-rose-400" : "text-zinc-200"
                     )}
                   >
                     {formatPercent(customer.churn_risk, true)}
@@ -324,10 +324,10 @@ export default function IdentityFraudPage() {
                   <span
                     className={cn(
                       "text-lg font-bold block mt-0.5",
-                      customer.fraud_score > 0.5 ? "text-rose-400" : "text-emerald-400"
+                      Number(customer.fraud_score ?? 0) > 0.5 ? "text-rose-400" : "text-emerald-400"
                     )}
                   >
-                    {customer.fraud_score?.toFixed(2) ?? "0.08"}
+                    {Number(customer.fraud_score ?? 0.08).toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -442,10 +442,11 @@ export default function IdentityFraudPage() {
                 </thead>
                 <tbody className="divide-y divide-zinc-850/60">
                   {fraudLog.map((log) => {
+                    const matchScoreNum = Number(log.match_score ?? 0)
                     const scoreColor =
-                      log.match_score > 0.85
+                      matchScoreNum > 0.85
                         ? "text-rose-400 bg-rose-950/60 border-rose-900/60"
-                        : log.match_score >= 0.5
+                        : matchScoreNum >= 0.5
                         ? "text-amber-400 bg-amber-950/60 border-amber-900/60"
                         : "text-zinc-400 bg-zinc-900 border-zinc-800"
 
@@ -465,7 +466,7 @@ export default function IdentityFraudPage() {
                         </td>
                         <td className="py-3 px-3">
                           <span className={cn("px-1.5 py-0.5 rounded border text-[11px]", scoreColor)}>
-                            {log.match_score.toFixed(2)}
+                            {matchScoreNum.toFixed(2)}
                           </span>
                         </td>
                         <td className="py-3 px-3">
