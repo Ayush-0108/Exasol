@@ -10,20 +10,17 @@ import { Label } from "@/components/ui/label"
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState("admin@pulsecart.io")
-  const [password, setPassword] = useState("demo")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  // Redirect if already authenticated
+  // Clear any existing session cookie when visiting login page so sign-in is always required
   useEffect(() => {
     if (typeof document !== "undefined") {
-      const match = document.cookie.match(/(^|;)\s*pulsecart_auth=([^;]+)/)
-      if (match && match[2] === "true") {
-        router.replace("/dashboard")
-      }
+      document.cookie = "pulsecart_auth=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT"
     }
-  }, [router])
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -119,6 +116,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
+                  placeholder="••••••••"
                   className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-emerald-500 font-mono text-xs pr-10"
                 />
                 <button
@@ -151,10 +149,6 @@ export default function LoginPage() {
               )}
             </Button>
           </form>
-
-          <p className="mt-4 text-xs font-mono text-zinc-400 text-center leading-relaxed">
-            Demo credentials are pre-filled. Just click Sign in.
-          </p>
         </div>
       </div>
     </div>
